@@ -51,7 +51,7 @@ function Header() {
           </Link>
         </div>
         <div className="items-center gap-6 flex">
-          <div className="relative overflow-visible group pr-10">
+          {/* <div className="relative overflow-visible group pr-10">
             <div className="items-center gap-10 flex">
               <div
                 className="w-[24px] h-[24px] bg-cover bg-no-repeat"
@@ -82,7 +82,7 @@ function Header() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {isLogin ? (
             <Menu
               handleLogout={handleLogout}

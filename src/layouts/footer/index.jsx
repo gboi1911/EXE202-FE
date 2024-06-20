@@ -1,31 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import vector_2 from "../../assets/images/Vector_2.png";
 import vector_6 from "../../assets/images/Vector_6.png";
 import vector_4 from "../../assets/images/Vector_4.png";
 import vector_1 from "../../assets/images/Vector_1.png";
 import logo from "../../assets/images/logo.png";
+import '../footer/footer.css';
 
 const redirectToFacebook = () => {
   window.open('https://www.facebook.com/profile.php?id=61560856130286', '_blank');
 };
-  
+
 function Footer() {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const handlePrivacyPolicyClick = () => {
+    setIsPopupVisible(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupVisible(false);
+  };
+
   return (
     <div className="w-full">
       <div className="w-full h-[525px] bg-[#5171f4] flex justify-around items-center">
         <div className="w-[829px] h-[209px] text-[0px]">
-          <span className="flex justify-start items-start font-bold  text-[30px]  leading-[40px] text-[#fbf9f6] mt-0 mr-0 mb-10 ml-0">
+          <span className="flex justify-start items-start font-bold text-[30px] leading-[40px] text-[#fbf9f6] mt-0 mr-0 mb-10 ml-0">
             Stay In the Loop <br />
             Subscribe to Our Newsletter!
           </span>
-          <div className="flex  items-center gap-10">
+          <div className="flex items-center gap-10">
             <div
               className="w-[116px] h-[102px] bg-[url(../assets/images/39795e02-4a41-41de-9085-f0c278eef84f.png)] bg-cover bg-no-repeat"
               style={{
                 backgroundImage: `url(${vector_2})`,
               }}
             />
-            <span className="flex w-[663px] h-[64px] justify-start items-start  text-[18px]  leading-[32px] text-[#fff]">
+            <span className="flex w-[663px] h-[64px] justify-start items-start text-[18px] leading-[32px] text-[#fff]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </span>
@@ -53,17 +64,16 @@ function Footer() {
                 backgroundImage: `url(${logo})`,
               }}
             />
-            <span className="flex w-[460px] h-[84px] justify-start items-start  text-[18px]  leading-[28px] text-[rgba(0,0,0,0.5)]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <span className="flex w-[460px] h-[84px] justify-start items-start text-[18px] leading-[28px] text-[rgba(0,0,0,0.5)]">
+              Art Spectrum is a site that connects art lovers. This is a location where people may discuss artistic perspectives, as well as where to purchase and sell paintings.
             </span>
           </div>
           <div className="w-1/2 flex justify-evenly items-baseline">
             <div>
-              <span className="flex h-[24px] justify-start items-start  mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
+              <span className="flex h-[24px] justify-start items-start mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
                 QUICK LINKS
               </span>
-              <span className="flex justify-start items-start  text-[18px]  leading-[44px] text-[rgba(0,0,0,0.7)]">
+              <span className="flex justify-start items-start text-[18px] leading-[44px] text-[rgba(0,0,0,0.7)]">
                 About us
                 <br />
                 Contact us
@@ -77,27 +87,18 @@ function Footer() {
             </div>
 
             <div>
-              <span className="flex h-[24px] justify-start items-start  mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
+              <span className="flex h-[24px] justify-start items-start mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
                 CUSTOMER AREA
               </span>
 
-              <span className="flex justify-start items-start  text-[18px]  leading-[44px] text-[rgba(0,0,0,0.7)]">
-                My Account
-                <br />
-                Orders
-                <br />
-                Tracking List
-                <br />
-                Terms
-                <br />
-                Privacy Policy
-                <br />
-                My Cart
-                <br />
+              <span className="flex justify-start items-start text-[18px] leading-[44px] text-[rgba(0,0,0,0.7)]">               
+                <span onClick={handlePrivacyPolicyClick} className="cursor-pointer">
+                  Privacy Policy
+                </span>                
               </span>
             </div>
             <div>
-              <span className="flex h-[24px] justify-start items-start  mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
+              <span className="flex h-[24px] justify-start items-start mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
                 CONTACT
               </span>
 
@@ -109,11 +110,11 @@ function Footer() {
                   }}
                 />
                 <div>
-                  <span className="flex h-[24px] justify-start items-start  text-[14px]  leading-[24px] text-[#000]">
+                  <span className="flex h-[24px] justify-start items-start text-[14px] leading-[24px] text-[#000]">
                     Have any question?
                   </span>
-                  <span className="flex h-[24px] justify-start items-start  text-[18px]  leading-[24px] text-[#ff7020]">
-                  +84 967 278 848
+                  <span className="flex h-[24px] justify-start items-start text-[18px] leading-[24px] text-[#ff7020]">
+                    +84 967 278 848
                   </span>
                 </div>
               </div>
@@ -143,6 +144,65 @@ function Footer() {
           Copyright © 2024 ArtSpectrum
         </span>
       </div>
+
+      {isPopupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <span className="close-button" onClick={closePopup}>&times;</span>
+            <div className="popup-text">
+              <h2>Privacy Policy</h2>
+              <p>Welcome to Artspectrum. This privacy policy explains how we collect, use, disclose and protect your personal information when you use our services. We are committed to protecting your privacy and ensuring that your personal information is protected. Below is information about our privacy policy:</p>
+              <h3>Personal information:</h3>
+              <p>When you register your account or use our platform, we can collect the following information:</p>
+              <ul>
+                <li>Name</li>
+                <li>Email address</li>
+                <li>Delivery address</li>
+                <li>Phone number</li>
+                <li>Payment information (credit card number, bank information)</li>
+              </ul>
+              <p>In addition, we can also collect personal information such as:</p>
+              <ul>
+                <li>IP address</li>
+                <li>Browser type</li>
+                <li>Operating system</li>
+                <li>History of access and interaction with the website</li>
+              </ul>
+              <h3>How we use information:</h3>
+              <p>We use your information for the following purposes:</p>
+              <ul>
+                <li>Processing orders and payment</li>
+                <li>Provide customer service</li>
+                <li>Send product information, promotions and updates</li>
+                <li>Improve service and user experience</li>
+                <li>Market analysis and research</li>
+              </ul>
+              <h3>Share information:</h3>
+              <p>We will not sell, exchange or disclose your personal information to third parties unless your consent or in the following cases:</p>
+              <ul>
+                <li>To comply with the laws and regulations</li>
+                <li>To protect our rights and property</li>
+                <li>To provide services for you through partners or service providers</li>
+              </ul>
+              <h3>Information security:</h3>
+              <p>We apply appropriate security measures to protect your personal information from access, use, disclosure or illegal destruction. These measures include:</p>
+              <ul>
+                <li>Data encrypt</li>
+                <li>Physical and digital access control</li>
+                <li>System monitoring regularly</li>
+              </ul>
+              <h3>Your rights:</h3>
+              <p>You have access, edit, or request to delete your personal information. If you want to exercise this right, please contact us via artspectrumproject@gmail.com.</p>
+              <h3>Change of Privacy Policy:</h3>
+              <p>We can update this privacy policy over time. All changes will be notified on our website and take effect as soon as it is posted. We encourage you to regularly check to update the latest information.</p>
+              <h3>Contact:</h3>
+              <p>If you have any questions or requirements related to this privacy policy, please contact us via:</p>
+              <p>Email address: artspectrumproject@gmail.com</p>
+              <p>Contact address: 0967278848</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

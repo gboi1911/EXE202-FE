@@ -4,8 +4,14 @@ import bg_4 from "../../../assets/images/bg_4.png";
 import { Link, useParams } from "react-router-dom";
 import ProductCard from "../../../components/ProductCard";
 import { getProductById } from "../../../api/product";
-
+import { addCart, getCartByUserId } from "../../../api/cart";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { getCart } from "../../../store/cart/cart-slice";
+import { useIsLogin } from "../../../hooks/useIsLogin";
 function ProductDetails() {
+  const dispatch = useDispatch();
+  const { isLogin } = useIsLogin();
   const { paintingId } = useParams();
   const [painting, setPainting] = useState(false);
   async function fetchGetProductById() {
@@ -14,6 +20,37 @@ function ProductDetails() {
       setPainting(data.data);
     }
   }
+      async function addToCart(paintingId) {
+        const data = await addCart({
+          userId: isLogin.userCredentials.userId,
+          paintingQuantity: [
+            {
+              paintingId: paintingId,
+              quantity: 1,
+            },
+          ],
+        });
+        if (data.succeeded) {
+          const data = await getCartByUserId(isLogin.userCredentials.userId);
+          if (data.succeeded) {
+            dispatch(getCart(data.data));
+          }
+          toast.success("add to cart successfully!", {
+            position: "top-right",
+            autoClose: 2000,
+            theme: "light",
+          });
+        } else {
+          toast.error(
+            "Some paintings are already in the cart!",
+            {
+              position: "top-right",
+              autoClose: 2000,
+              theme: "light",
+            }
+          );
+        }
+      }
   useEffect(() => {
     fetchGetProductById();
   }, []);
@@ -57,11 +94,14 @@ function ProductDetails() {
                 Buy
               </button>
             </Link>
-            <Link to="/cart">
-              <button className="w-[228px] h-[57px] bg-white border-[#FF7020] text-[#FF7020] text-[18px] rounded-xl mt-10 cursor-pointer hover:bg-[#FF7020] hover:text-white">
+            <div>
+              <button
+                className="w-[228px] h-[57px] bg-white border-[#FF7020] text-[#FF7020] text-[18px] rounded-xl mt-10 cursor-pointer hover:bg-[#FF7020] hover:text-white"
+                onClick={() => addToCart(painting.paintingId)}
+              >
                 Add to cart
               </button>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ import "./assets/css/tailwind.scss";
 import Login from "./pages/main/Login";
 import Register from "./pages/main/Register";
 import Blogs from "./pages/main/Blogs";
-import About from "./pages/main/About";
+import About from "./pages/About";
 import ContactUs from "./pages/main/ContactUs";
 import UploadArtwork from "./pages/main/UploadArtwork";
 import Role from "./pages/main/Role";
