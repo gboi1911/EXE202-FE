@@ -79,6 +79,10 @@ function Blogs() {
                 <div
                   className="relative w-[350px] h-[500px] bg-[#c4c4c4] rounded-[20px]"
                   key={index}
+                  style={{
+                    backgroundImage: `url(${item.imgBlog})`,    
+                    backgroundSize: "cover",
+                    backgroundRepeat: "round"}}
                 >
                   <div className="flex justify-center items-center w-[350px] h-[150px] bg-[#fff] shadow-[0_16px_22px_0_rgba(0,0,0,0.03)]  rounded-br-[20px] rounded-bl-[20px] absolute bottom-0">
                     <span className="text-[16px] font-normal text-[#000] absolute">
@@ -98,7 +102,7 @@ function Blogs() {
           dataBlogs.slice(0, 1).map((item, index) => {
             return (
               <div className="flex items-center my-28" key={index}>
-                <div className="w-[55%] h-[650px] bg-[#c4c4c4]" />
+                <img className="w-[55%] h-[650px] bg-[#c4c4c4]" src={item.imgBlog} alt=""/>
                 <div className="w-[45%] text-center pl-28">
                   <div className="text-[36px] font-bold leading-[50.73px] text-[#000] ">
                     {item.titeBlog}
@@ -131,7 +135,7 @@ function Blogs() {
                     <span className="text-[20px] text-[#fff]">MORE</span>
                   </button>
                 </div>
-                <div className="w-[55%] h-[650px] bg-[#c4c4c4]" />
+                <img className="w-[55%] h-[650px] bg-[#c4c4c4]" src={item.imgBlog} alt=""/>
               </div>
             );
           })
