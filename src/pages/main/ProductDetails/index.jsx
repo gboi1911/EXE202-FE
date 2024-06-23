@@ -20,40 +20,37 @@ function ProductDetails() {
       setPainting(data.data);
     }
   }
-      async function addToCart(paintingId) {
-        const data = await addCart({
-          userId: isLogin.userCredentials.userId,
-          paintingQuantity: [
-            {
-              paintingId: paintingId,
-              quantity: 1,
-            },
-          ],
-        });
-        if (data.succeeded) {
-          const data = await getCartByUserId(isLogin.userCredentials.userId);
-          if (data.succeeded) {
-            dispatch(getCart(data.data));
-          }
-          toast.success("add to cart successfully!", {
-            position: "top-right",
-            autoClose: 2000,
-            theme: "light",
-          });
-        } else {
-          toast.error(
-            "Some paintings are already in the cart!",
-            {
-              position: "top-right",
-              autoClose: 2000,
-              theme: "light",
-            }
-          );
-        }
+  async function addToCart(paintingId) {
+    const data = await addCart({
+      userId: isLogin.userCredentials.userId,
+      paintingQuantity: [
+        {
+          paintingId: paintingId,
+          quantity: 1,
+        },
+      ],
+    });
+    if (data.succeeded) {
+      const data = await getCartByUserId(isLogin.userCredentials.userId);
+      if (data.succeeded) {
+        dispatch(getCart(data.data));
       }
+      toast.success("add to cart successfully!", {
+        position: "top-right",
+        autoClose: 2000,
+        theme: "light",
+      });
+    } else {
+      toast.error("Some paintings are already in the cart!", {
+        position: "top-right",
+        autoClose: 2000,
+        theme: "light",
+      });
+    }
+  }
   useEffect(() => {
     fetchGetProductById();
-  }, []);
+  }, [paintingId]);
   return (
     <div>
       <div className="flex justify-between">
@@ -85,7 +82,6 @@ function ProductDetails() {
           <div className="text-[24px] font-bold mb-5">
             {painting?.title} - {painting?.artistsId}
           </div>
-          <div className="text-[18px] font-semibold mb-5">SKU:767332108032</div>
           <div className="mb-5">{painting?.description}</div>
           <div className="text-[24px]">{painting?.price}VND</div>
           <div className="flex gap-10">
@@ -104,15 +100,6 @@ function ProductDetails() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="ml-20 mt-20">
-        <ul className="flex list-none justify-evenly w-[60%] bg-gray-300 h-[98px] items-center text-[24px]">
-          <li>Description</li>
-          <li>Specification</li>
-          <li>Discussion</li>
-          <li>Comments</li>
-        </ul>
-        <div></div>
       </div>
     </div>
   );

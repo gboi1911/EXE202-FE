@@ -2,18 +2,50 @@ import React, { useEffect, useState } from "react";
 import bg_5 from "../../../assets/images/bg_5.png";
 import { useNavigate } from "react-router-dom";
 import { getProducts } from "../../../api/product";
+import { useDispatch } from "react-redux";
+import { useIsLogin } from "../../../hooks/useIsLogin";
+import { open } from "../../../store/modal/modal-slice";
+import { getArtist } from "../../../api/blog";
+import { getSale } from "../../../api/product";
+import CreateProductModal from "../../../components/Modal/createProduct";
 function Products() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLogin } = useIsLogin();
+  const [dataArtist, setDataArtist] = useState(false);
+  const [dataSale, setDataSale] = useState(false);
   const [selectedRange, setSelectedRange] = useState("");
+  const onCreateProduct = () => {
+    dispatch(
+      open(<CreateProductModal dataArtist={dataArtist} dataSale={dataSale} />)
+    );
+  };
+  async function fetchGetArtist() {
+    const data = await getArtist();
+    if (data.succeeded) {
+      for (let i = 0; i < data.data.length; i++) {
+        data.data[i].value = data.data[i].artistId;
+        data.data[i].label = `artistId - ${data.data[i].artistId}`;
+      }
+      setDataArtist(data.data);
+    }
+  }
+  async function fetchGetSale() {
+    const data = await getSale();
+    if (data.succeeded) {
+      for (let i = 0; i < data.data.length; i++) {
+        data.data[i].value = data.data[i].saleId;
+        data.data[i].label = `saleId - ${data.data[i].saleId}`;
+      }
+      setDataSale(data.data);
+    }
+  }
   async function fetchGetProducts() {
     const data = await getProducts();
     if (data.succeeded) {
       setProducts(data.data);
     }
   }
-  useEffect(() => {
-    fetchGetProducts();
-  }, []);
 
   const handleClick = (product) => {
     navigate(`/products/${product.paintingId}`);
@@ -52,7 +84,11 @@ function Products() {
   for (let i = 1; i <= Math.ceil(filteredProducts.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
-
+  useEffect(() => {
+    fetchGetArtist();
+    fetchGetSale();
+    fetchGetProducts();
+  }, [products]);
   return (
     <div>
       <div className="relative">
@@ -75,6 +111,14 @@ function Products() {
               Discover ArtSpectrum
             </span>
           </button>
+          {isLogin.userCredentials.role === "Admin" && (
+            <button
+              className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
+              onClick={onCreateProduct}
+            >
+              <span className="text-[20px] text-[#000]">Create product</span>
+            </button>
+          )}
         </div>
       </div>
       <div className="flex m-20">
@@ -88,6 +132,15 @@ function Products() {
                 Price
               </div>
               <div className="flex flex-col justify-center gap-4 my-4 absolute mt-5">
+                <div className="flex gap-3 items-center">
+                  <button
+                    onClick={() => handlePriceRangeChange()}
+                    className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
+                  ></button>
+                  <p className="[font-family:'Poppins',Helvetica] text-black]">
+                    All
+                  </p>
+                </div>
                 <div className="flex gap-3 items-center">
                   <button
                     onClick={() => handlePriceRangeChange("below500")}
@@ -121,7 +174,7 @@ function Products() {
           </div>
         </div>
         <div className="flex flex-col justify-between">
-          <div className="flex flex-wrap gap-10 ml-14 h-[450px]">
+          <div className="flex flex-wrap gap-5 ml-14 h-[50%] w-full">
             {filteredProducts && filteredProducts.length > 0 ? (
               currentItems.map((item, index) => {
                 return (
@@ -130,8 +183,12 @@ function Products() {
                     className="w-[20em] border-solid rounded-2xl border-gray-100 shadow-xl cursor-pointer"
                     onClick={() => handleClick(item)}
                   >
-                    <div className="h-[300px] bg-gray-600 rounded-3xl">
-                      <img src={item.imageUrl} alt="product_img" />
+                    <div className="h-[250px] rounded-3xl">
+                      <img
+                        src={item.imageUrl}
+                        className="object-contain w-full h-full rounded-t-2xl"
+                        alt="product_img"
+                      />
                     </div>
                     <div className="mt-7 ml-7">
                       <div className="text-[24px] font-semibold mb-2">
@@ -171,7 +228,7 @@ function Products() {
               </p>
             )}
           </div>
-          <div className="pagination ml-14">
+          <div className="pagination ml-14 mt-5">
             {pageNumbers.map((number) => (
               <button
                 className="w-[30px] h-[30px] bg-[#FF7020] text-white border-none shadow-lg cursor-pointer hover:bg-[#9c6a4c]"

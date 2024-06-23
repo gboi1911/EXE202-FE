@@ -24,9 +24,9 @@ export function validateRegister(values) {
   if (!values.address) {
     errors.address = "address is required";
   }
-    if (!values.phoneNumber) {
-      errors.phoneNumber = "phoneNumber is required";
-    }
+  if (!values.phoneNumber) {
+    errors.phoneNumber = "phoneNumber is required";
+  }
   if (!values.password) {
     errors.password = "Password is required";
   } else if (values.password.length < 8) {
@@ -89,6 +89,25 @@ export function validateBlog(values) {
   }
   if (!values.descriptionBlog) {
     errors.descriptionBlog = "descriptionBlog is required";
+  }
+  return errors;
+}
+export function validateProduct(values) {
+  let errors = {};
+  if (!values.title) {
+    errors.title = "title is required";
+  }
+  if (!values.description) {
+    errors.description = "description is required";
+  }
+  if (!values.price) {
+    errors.price = "price is required";
+  }
+  if (!values.salesPrice) {
+    errors.salesPrice = "salesPrice is required";
+  }
+  if (!values.stockQuantity) {
+    errors.stockQuantity = "stockQuantity is required";
   }
   return errors;
 }
