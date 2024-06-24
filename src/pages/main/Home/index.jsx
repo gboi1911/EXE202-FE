@@ -54,8 +54,12 @@ function Home() {
                     className="w-[20em] border-solid rounded-2xl border-gray-100 shadow-xl cursor-pointer"
                     onClick={() => handleClick(item)}
                   >
-                    <div className="h-[375px] bg-gray-600 rounded-3xl">
-                      <img src={item.imageUrl} alt="product_img" />
+                    <div className="h-[300px] rounded-3xl">
+                      <img
+                        src={item.imageUrl}
+                        className="object-cover rounded-2xl w-[300px] h-[300px]"
+                        alt="product_img"
+                      />
                     </div>
                     <div className="mt-7 ml-7">
                       <div className="text-[24px] font-semibold mb-2">
@@ -107,8 +111,12 @@ function Home() {
                     className="w-[20em] border-solid rounded-2xl border-gray-100 shadow-xl cursor-pointer"
                     onClick={() => handleClick(item)}
                   >
-                    <div className="h-[375px] bg-gray-600 rounded-3xl">
-                      <img src={item.imageUrl} alt="product_img" />
+                    <div className="h-[375px] rounded-3xl">
+                      <img
+                        src={item.imageUrl}
+                        className="object-cover rounded-2xl w-[300px] h-[300px]"
+                        alt="product_img"
+                      />
                     </div>
                     <div className="mt-7 ml-7">
                       <div className="text-[24px] font-semibold mb-2">
@@ -160,8 +168,12 @@ function Home() {
                     className="w-[20em] border-solid rounded-2xl border-gray-100 shadow-xl cursor-pointer"
                     onClick={() => handleClick(item)}
                   >
-                    <div className="h-[375px] bg-gray-600 rounded-3xl">
-                      <img src={item.imageUrl} alt="product_img" />
+                    <div className="h-[375px] rounded-3xl">
+                      <img
+                        src={item.imageUrl}
+                        className="object-cover rounded-2xl w-[300px] h-[300px]"
+                        alt="product_img"
+                      />
                     </div>
                     <div className="mt-7 ml-7">
                       <div className="text-[24px] font-semibold mb-2">

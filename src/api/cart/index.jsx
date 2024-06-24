@@ -83,3 +83,17 @@ export const addCart = async (values) => {
     })
     .catch((err) => console.log(err));
 };
+export const checkOut = async (values, orderId) => {
+  return fetch(`${url}/payment/${orderId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  })
+    .then(async (response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};

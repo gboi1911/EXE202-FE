@@ -186,7 +186,7 @@ function Products() {
                     <div className="h-[250px] rounded-3xl">
                       <img
                         src={item.imageUrl}
-                        className="object-contain w-full h-full rounded-t-2xl"
+                        className="object-cover w-full h-full rounded-t-2xl"
                         alt="product_img"
                       />
                     </div>
