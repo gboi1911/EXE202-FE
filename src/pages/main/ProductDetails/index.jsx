@@ -53,13 +53,13 @@ function ProductDetails() {
   }, [paintingId]);
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-10">
         <div className="w-[50%] flex justify-center">
           <Carousel className="w-[684px] h-[524px]">
             <div
               className="w-[684px] h-[524px] bg-cover bg-no-repeat relative rounded-2xl"
               style={{
-                backgroundImage: `url(${bg_4})`,
+                backgroundImage: `url(${painting?.imageUrl})`,
               }}
             />
 
