@@ -105,12 +105,7 @@ function Products() {
           <span className="flex justify-start items-start text-[20px] font-normal text-[#fff] py-10">
             Immerse yourself in breathtaking artworks and inspiring stories on
             our art website.
-          </span>
-          <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
-            <span className="text-[20px] text-[#fff]">
-              Discover ArtSpectrum
-            </span>
-          </button>
+          </span>          
           {isLogin.userCredentials.role === "Admin" && (
             <button
               className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"

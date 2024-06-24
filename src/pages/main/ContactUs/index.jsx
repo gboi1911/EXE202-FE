@@ -8,7 +8,7 @@ function ContactUs() {
     <div>
       <div className="relative">
         <div
-          className="w-full h-[600px] bg-cover bg-no-repeat relative"
+          className="w-[90%] h-[750px] bg-cover bg-no-repeat relative mt-10 rounded-3xl m-auto"
           style={{
             backgroundImage: `url(${bg_8})`,
           }}

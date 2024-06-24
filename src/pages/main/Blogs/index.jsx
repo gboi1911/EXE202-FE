@@ -3,6 +3,7 @@ import bg_9 from "../../../assets/images/bg_9.png";
 import { getArtist, getBlogs } from "../../../api/blog";
 import { useIsLogin } from "../../../hooks/useIsLogin";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { open } from "../../../store/modal/modal-slice";
 import CreateBlogModal from "../../../components/Modal/createBlog";
 function Blogs() {
@@ -37,7 +38,7 @@ function Blogs() {
     <div>
       <div className="relative">
         <div
-          className="w-full h-[750px] bg-cover bg-no-repeat relative"
+          className="w-[90%] h-[750px] bg-cover bg-no-repeat relative mt-10 rounded-3xl m-auto"
           style={{
             backgroundImage: `url(${bg_9})`,
           }}
@@ -52,11 +53,13 @@ function Blogs() {
           </span>
 
           <div className="flex gap-4 items-center">
+            <Link to="/products">
             <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
               <span className="text-[20px] text-[#000]">
                 Discover ArtSpectrum
               </span>
             </button>
+            </Link>
             {isLogin.userCredentials.role === "Admin" && (
               <button
                 className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"

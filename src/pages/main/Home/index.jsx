@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import bg_9 from "../../../assets/images/bg_9.png";
+import { Link } from "react-router-dom";
 import { getProducts } from "../../../api/product";
 import { useNavigate } from "react-router-dom";
 function Home() {
@@ -35,11 +36,13 @@ function Home() {
             Immerse yourself in breathtaking artworks and inspiring stories on
             our art website.
           </span>
+          <Link to="/products">
           <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
             <span className="text-[20px] text-[#fff]">
               Discover ArtSpectrum
             </span>
           </button>
+          </Link>
         </div>
       </div>
       <div className="m-20">
