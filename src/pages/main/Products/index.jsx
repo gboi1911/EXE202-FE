@@ -105,7 +105,7 @@ function Products() {
           <span className="flex justify-start items-start text-[20px] font-normal text-[#fff] py-10">
             Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
           </span>          
-          {isLogin.userCredentials.role === "admin" || "artist" && (
+          {["admin", "artist"].includes(isLogin.userCredentials.role.toLowerCase()) && (
             <button
               className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
               onClick={onCreateProduct}
