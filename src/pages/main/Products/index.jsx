@@ -99,19 +99,18 @@ function Products() {
           }}
         />
         <div className="w-[530px] absolute top-[200px] left-[300px]">
-          <span className="flex justify-start items-start text-[60px] font-bold text-[#fff]">
-            Ready to dive in the world of art?
+          <span className="flex justify-start items-start text-[50px] font-bold text-[#fff]">
+            Bạn đã sẵn sàng bước vào thế giới nghệ thuật của chúng tôi chưa ?
           </span>
           <span className="flex justify-start items-start text-[20px] font-normal text-[#fff] py-10">
-            Immerse yourself in breathtaking artworks and inspiring stories on
-            our art website.
+            Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
           </span>          
-          {isLogin.userCredentials.role === "Admin" && (
+          {isLogin.userCredentials.role === "admin" || "artist" && (
             <button
               className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
               onClick={onCreateProduct}
             >
-              <span className="text-[20px] text-[#000]">Create product</span>
+              <span className="text-[20px] text-[#000]">Hãy thêm những bức tranh mới</span>
             </button>
           )}
         </div>

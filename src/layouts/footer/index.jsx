@@ -33,41 +33,41 @@ function Footer() {
               }}
             />
             <span className="flex w-[460px] h-[84px] justify-start items-start text-[18px] leading-[28px] text-[rgba(0,0,0,0.5)]">
-              Art Spectrum is a site that connects art lovers. This is a location where people may discuss artistic perspectives, as well as where to purchase and sell paintings.
+              Art Spectrum là website kết nối những người yêu nghệ thuật. Đây là nơi mọi người có thể thảo luận về quan điểm nghệ thuật cũng như nơi mua bán tranh.
             </span>
           </div>
           <div className="w-1/2 flex justify-evenly items-baseline">
             <div>
               <span className="flex h-[24px] justify-start items-start mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
-                QUICK LINKS
+                TRUY CẬP 
               </span>
               <span className="flex justify-start items-start text-[18px] leading-[44px] text-[rgba(0,0,0,0.7)]">
-                About us
+                Giới thiệu
                 <br />
-                Contact us
+                Liên hệ
                 <br />
-                Products
+                Sản phẩm
                 <br />
-                Login
+                Đăng nhập
                 <br />
-                Sign Up
+                Đăng ký
               </span>
             </div>
 
             <div>
               <span className="flex h-[24px] justify-start items-start mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
-                CUSTOMER AREA
+                KHÁCH HÀNG
               </span>
 
               <span className="flex justify-start items-start text-[18px] leading-[44px] text-[rgba(0,0,0,0.7)]">               
                 <span onClick={handlePrivacyPolicyClick} className="cursor-pointer">
-                  Privacy Policy
+                  Chính sách
                 </span>                
               </span>
             </div>
             <div>
               <span className="flex h-[24px] justify-start items-start mb-6 text-[20px] font-bold leading-[24px] text-[#000]">
-                CONTACT
+                LIÊN HỆ
               </span>
 
               <div className="flex justify-start items-center gap-6">
@@ -79,7 +79,7 @@ function Footer() {
                 />
                 <div>
                   <span className="flex h-[24px] justify-start items-start text-[14px] leading-[24px] text-[#000]">
-                    Have any question?
+                    Vui lòng liên hệ với chúng tôi
                   </span>
                   <span className="flex h-[24px] justify-start items-start text-[18px] leading-[24px] text-[#ff7020]">
                     +84 967 278 848
@@ -87,7 +87,7 @@ function Footer() {
                 </div>
               </div>
               <span className="flex h-[24px] justify-start items-start mt-16 mb-6 text-[20px] font-semibold leading-[24px] text-[#000]">
-                SOCIAL
+                MẠNG XÃ HỘI
               </span>
               <div className="flex w-[130px] h-[58px] gap-[14px] items-center flex-nowrap">
                 <div className="p-4 bg-gray-300 rounded-lg">
@@ -118,55 +118,55 @@ function Footer() {
           <div className="popup-content">
             <span className="close-button" onClick={closePopup}>&times;</span>
             <div className="popup-text">
-              <h2>Privacy Policy</h2>
-              <p>Welcome to Artspectrum. This privacy policy explains how we collect, use, disclose and protect your personal information when you use our services. We are committed to protecting your privacy and ensuring that your personal information is protected. Below is information about our privacy policy:</p>
-              <h3>Personal information:</h3>
-              <p>When you register your account or use our platform, we can collect the following information:</p>
+              <h2>Chính sách bảo mật</h2>
+              <p>Chào mừng đến với Artspectrum. Chính sách bảo mật này giải thích cách chúng tôi thu thập, sử dụng, tiết lộ và bảo vệ thông tin cá nhân của bạn khi bạn sử dụng dịch vụ của chúng tôi. Chúng tôi cam kết bảo vệ quyền riêng tư của bạn và đảm bảo rằng thông tin cá nhân của bạn được bảo vệ. Dưới đây là thông tin về chính sách bảo mật của chúng tôi:</p>
+              <h3>Thông tin cá nhân:</h3>
+              <p>Khi bạn đăng ký tài khoản hoặc sử dụng nền tảng của chúng tôi, chúng tôi có thể thu thập các thông tin sau:</p>
               <ul>
-                <li>Name</li>
-                <li>Email address</li>
-                <li>Delivery address</li>
-                <li>Phone number</li>
-                <li>Payment information (credit card number, bank information)</li>
+                <li>Tên</li>
+                <li>Đỉa chỉ Email</li>
+                <li>Địa chỉ giao hàng</li>
+                <li>Số điện thoại</li>
+                <li>Thông tin thanh toán (số thẻ tín dụng, thông tin ngân hàng)</li>
               </ul>
-              <p>In addition, we can also collect personal information such as:</p>
+              <p>Ngoài ra, chúng tôi còn có thể thu thập các thông tin cá nhân như:</p>
               <ul>
-                <li>IP address</li>
-                <li>Browser type</li>
-                <li>Operating system</li>
-                <li>History of access and interaction with the website</li>
+                <li>Địa chỉ IP</li>
+                <li>Loại trình duyệt</li>
+                <li>Hệ điều hành</li>
+                <li>Lịch sử truy cập và tương tác với website</li>
               </ul>
-              <h3>How we use information:</h3>
-              <p>We use your information for the following purposes:</p>
+              <h3>Cách chúng tôi sử dụng thông tin:</h3>
+              <p>Chúng tôi sử dụng thông tin của bạn cho các mục đích sau:</p>
               <ul>
-                <li>Processing orders and payment</li>
-                <li>Provide customer service</li>
-                <li>Send product information, promotions and updates</li>
-                <li>Improve service and user experience</li>
-                <li>Market analysis and research</li>
+                <li>Xử lý đơn hàng và thanh toán</li>
+                <li>Cung cấp dịch vụ khách hàng</li>
+                <li>Gửi thông tin sản phẩm, khuyến mãi và cập nhật</li>
+                <li>Cải thiện dịch vụ và trải nghiệm người dùng</li>
+                <li>Phân tích và nghiên cứu thị trường</li>
               </ul>
-              <h3>Share information:</h3>
-              <p>We will not sell, exchange or disclose your personal information to third parties unless your consent or in the following cases:</p>
+              <h3>Chia sẻ thông tin:</h3>
+              <p>Chúng tôi sẽ không bán, trao đổi hoặc tiết lộ thông tin cá nhân của bạn cho bên thứ ba trừ khi có sự đồng ý của bạn hoặc trong các trường hợp sau:</p>
               <ul>
-                <li>To comply with the laws and regulations</li>
-                <li>To protect our rights and property</li>
-                <li>To provide services for you through partners or service providers</li>
+                <li>Để tuân thủ luật pháp và các quy định</li>
+                <li>Để bảo vệ quyền và tài sản của chúng tôi</li>
+                <li>Để cung cấp dịch vụ cho bạn thông qua các đối tác hoặc nhà cung cấp dịch vụ</li>
               </ul>
-              <h3>Information security:</h3>
-              <p>We apply appropriate security measures to protect your personal information from access, use, disclosure or illegal destruction. These measures include:</p>
+              <h3>Bảo mật thông tin:</h3>
+              <p>Chúng tôi áp dụng các biện pháp bảo mật thích hợp để bảo vệ thông tin cá nhân của bạn khỏi bị truy cập, sử dụng, tiết lộ hoặc tiêu hủy bất hợp pháp. Những biện pháp này bao gồm:</p>
               <ul>
-                <li>Data encrypt</li>
-                <li>Physical and digital access control</li>
-                <li>System monitoring regularly</li>
+                <li>Mã hóa dữ liệu</li>
+                <li>Kiểm soát truy cập vật lý và kỹ thuật số</li>
+                <li>Giám sát hệ thống thường xuyên</li>
               </ul>
-              <h3>Your rights:</h3>
-              <p>You have access, edit, or request to delete your personal information. If you want to exercise this right, please contact us via artspectrumproject@gmail.com.</p>
-              <h3>Change of Privacy Policy:</h3>
-              <p>We can update this privacy policy over time. All changes will be notified on our website and take effect as soon as it is posted. We encourage you to regularly check to update the latest information.</p>
-              <h3>Contact:</h3>
-              <p>If you have any questions or requirements related to this privacy policy, please contact us via:</p>
-              <p>Email address: artspectrumproject@gmail.com</p>
-              <p>Contact address: 0967278848</p>
+              <h3>Quyền lợi của bạn:</h3>
+              <p>Bạn có quyền truy cập, chỉnh sửa hoặc yêu cầu xóa thông tin cá nhân của mình. Nếu bạn muốn thực hiện quyền này, vui lòng liên hệ với chúng tôi qua artspectrumproject@gmail.com.</p>
+              <h3>Thay đổi chính sách quyền riêng tư:</h3>
+              <p>Chúng tôi có thể cập nhật chính sách quyền riêng tư này theo thời gian. Mọi thay đổi sẽ được thông báo trên trang web của chúng tôi và có hiệu lực ngay khi được đăng tải. Chúng tôi khuyến khích bạn thường xuyên kiểm tra để cập nhật những thông tin mới nhất.</p>
+              <h3>Liên hệ:</h3>
+              <p>Nếu bạn có bất kỳ câu hỏi hoặc yêu cầu nào liên quan đến chính sách quyền riêng tư này, vui lòng liên hệ với chúng tôi qua:</p>
+              <p>Địa chỉ email: artspectrumproject@gmail.com</p>
+              <p>Địa chỉ liên hệ: 0967278848</p>
             </div>
           </div>
         </div>

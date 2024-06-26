@@ -39,7 +39,7 @@ function CreateBlogModal({ dataArtist }) {
       titeBlog: values.titeBlog,
       descriptionBlog: values.descriptionBlog,
       imgBlog: image,
-      artistId: selectedArtist?.value,
+      artistId: isLogin.userCredentials.userId,
     });
     if (data.succeeded) {
       dispatch(close());
@@ -98,7 +98,7 @@ function CreateBlogModal({ dataArtist }) {
   };
   return (
     <div className="customModal--sign-in options-modal">
-      <h3 className="heading">Create Blog</h3>
+      <h3 className="heading">Tạo bài viết</h3>
       <form className="w-full gap-5 grid" onSubmit={handleSubmit} noValidate>
         <div>
           <div className="relative text-center">
@@ -151,29 +151,19 @@ function CreateBlogModal({ dataArtist }) {
               type="text"
               name="titeBlog"
               className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              placeholder="Blog's title"
+              placeholder="Tựa đề bài viết"
               onChange={handleChange}
               value={values.titeBlog || ""}
               required
             />
             <Validate errors={errors.titeBlog} />
           </div>
-          <div className="relative text-center flex justify-center">
-            <Select
-              styles={colorStyles}
-              options={dataArtist}
-              value={selectedArtist}
-              onChange={(selectedOption) => setSelectedArtist(selectedOption)}
-              className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              classNamePrefix="react-select"
-            />
-          </div>
           <div className="relative text-center">
             <textarea
               type="text"
               name="descriptionBlog"
               className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              placeholder="Content"
+              placeholder="Nội dung"
               onChange={handleChange}
               value={values.descriptionBlog || ""}
               required
@@ -183,7 +173,7 @@ function CreateBlogModal({ dataArtist }) {
         </div>
         <div className="text-center">
           <button className="bg-[#fb9054] rounded-[12px] border-none w-1/2 p-2">
-            <span className="text-[20px] text-[#fff]">Submit</span>
+            <span className="text-[20px] text-[#fff]">Đã xong</span>
           </button>
         </div>
       </form>

@@ -29,25 +29,25 @@ function Header() {
             to={"/about"}
             className="text-black text-[20px] no-underline pl-4"
           >
-            About
+            Giới thiệu
           </Link>
           <Link
             to={"/products"}
             className="text-black text-[20px] no-underline pl-4"
           >
-            Products
+            Sản phẩm
           </Link>
           <Link
             to={"/contactUs"}
             className="text-black text-[20px] no-underline pl-4"
           >
-            Contact Us
+            Liên hệ
           </Link>
           <Link
             to={"/blog"}
             className="text-black text-[20px] no-underline pl-4"
           >
-            Blog
+            Nhật ký
           </Link>
         </div>
         <div className="items-center gap-6 flex">

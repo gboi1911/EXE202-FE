@@ -44,35 +44,34 @@ function Blogs() {
           }}
         />
         <div className="w-[530px] absolute top-[200px] left-[300px]">
-          <span className="flex justify-start items-start text-[60px] font-bold text-[#fff]">
-            Ready to dive in the world of art?
+          <span className="flex justify-start items-start text-[50px] font-bold text-[#fff]">
+          Bạn đã sẵn sàng bước vào thế giới nghệ thuật của chúng tôi chưa ?
           </span>
           <span className="flex justify-start items-start text-[20px] font-normal text-[#fff] py-10">
-            Immerse yourself in breathtaking artworks and inspiring stories on
-            our art website.
+          Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
           </span>
 
           <div className="flex gap-4 items-center">
             <Link to="/products">
             <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
               <span className="text-[20px] text-[#000]">
-                Discover ArtSpectrum
+                Khám phá ArtSpectrum
               </span>
             </button>
             </Link>
-            {isLogin.userCredentials.role === "Admin" && (
+            {["admin", "artist"].includes(isLogin.userCredentials.role.toLowerCase()) && (
               <button
                 className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
                 onClick={onCreateBlog}
-              >
-                <span className="text-[20px] text-[#000]">Create blog</span>
+              >       
+                <span className="text-[20px] text-[#000]">Hãy để lại chia sẻ của bạn</span>
               </button>
             )}
           </div>
         </div>
       </div>
       <span className="flex justify-center items-start text-[36px] font-bold text-[#000] text-center my-20">
-        Latest Article
+        Bài đăng mới nhất
       </span>
       <div>
         <div className="flex justify-center gap-[135px]">
@@ -112,10 +111,7 @@ function Blogs() {
                   </div>
                   <div className="text-[18px] font-normal leading-[25.848px] text-[#000] my-[50px]  text-left">
                     {item.descriptionBlog}
-                  </div>
-                  <button className="bg-[#fb9054] rounded-[12px] border-none w-1/2 p-4">
-                    <span className="text-[20px] text-[#fff]">MORE</span>
-                  </button>
+                  </div>                  
                 </div>
               </div>
             );
@@ -133,10 +129,7 @@ function Blogs() {
                   </div>
                   <div className="text-[18px] font-normal leading-[25.848px] text-[#000] my-[50px]  text-left">
                     {item.descriptionBlog}
-                  </div>
-                  <button className="bg-[#fb9054] rounded-[12px] border-none w-1/2 p-4">
-                    <span className="text-[20px] text-[#fff]">MORE</span>
-                  </button>
+                  </div>                  
                 </div>
                 <img className="w-[55%] h-[650px] bg-[#c4c4c4]" src={item.imgBlog} alt=""/>
               </div>

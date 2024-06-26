@@ -15,7 +15,7 @@ function ContactUs() {
         />
       </div>
       <span className="flex justify-center items-start text-[42px] font-bold text-[#000] text-center my-20">
-        Contact<span className="text-[#206CFF] pl-2">Us</span>
+        Liên hệ với<span className="text-[#206CFF] pl-2">ArtSpectrum</span>
       </span>
       <div className="mx-[130px]">
         <div className="flex justify-center items-center my-28">
@@ -53,11 +53,10 @@ function ContactUs() {
           </div> */}
           <div className="w-[50%] pl-28">
             <div className="text-[24px] font-normal leading-[35px] text-[#000] my-[50px]  text-left">
-              At ArtSpectrum, you'll find an extensive selection of original
-              paintings, prints, sculptures, and mixed media pieces from
-              talented artists across the globe. Whether you're a seasoned
-              collector or an art enthusiast exploring new horizons, we have
-              something special for you.
+            Tại ArtSpectrum, bạn sẽ tìm thấy nhiều lựa chọn về tranh gốc, bản in, 
+            tác phẩm điêu khắc và các tác phẩm đa phương tiện từ các nghệ sĩ tài năng trên toàn cầu. 
+            Cho dù bạn là một nhà sưu tập dày dạn kinh nghiệm hay một người đam mê nghệ thuật khám phá những chân trời mới, 
+            chúng tôi đều có thứ gì đó đặc biệt dành cho bạn.
             </div>
             <div>
               <div className="flex items-center text-[24px] font-semibold leading-[35px] text-[#000] my-[30px]  text-left">

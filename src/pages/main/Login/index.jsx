@@ -24,7 +24,7 @@ function Login() {
           key: "userLog",
           value: JSON.stringify(data.data),
         });
-        navigate("/about");
+        navigate("/home");
         toast.success("Login successfully!", {
           position: "top-right",
           autoClose: 2000,
@@ -54,7 +54,7 @@ function Login() {
             noValidate
           >
             <span className="text-[32px] text-[#206bff] font-semibold">
-              LOGIN
+              ĐĂNG NHẬP
             </span>
             <div>
               <div className="relative">
@@ -74,7 +74,7 @@ function Login() {
                   type="password"
                   name="password"
                   className="w-2/3 bg-[#d9d9d9] rounded-[18px] border-none text-lg p-4 mt-6"
-                  placeholder="Password"
+                  placeholder="Mật khẩu"
                   onChange={handleChange}
                   value={values.password || ""}
                   required
@@ -83,22 +83,22 @@ function Login() {
               </div>
             </div>
             <div className="flex justify-center gap-28">
-              <span className="text-[20px] text-[#000]">Remember</span>
-              <span className="text-[20px] text-[#000]">Forgot Password?</span>
+              <span className="text-[20px] text-[#000]">Lưu tài khoản</span>
+              <span className="text-[20px] text-[#000]">Quên mật khẩu</span>
               <div className="w-[4.97%] h-[93.1%] bg-[url(../assets/images/046c44db-ee91-4e2e-92e3-fd791c4847ab.png)] bg-[length:100%_100%] bg-no-repeat absolute top-[6.9%] left-0 z-[17]" />
             </div>
             <div>
               <button className="bg-[#fb9054] rounded-[12px] border-none w-1/2 p-4">
-                <span className="text-[20px] text-[#fff]">LOGIN</span>
+                <span className="text-[20px] text-[#fff]">ĐĂNG NHẬP</span>
               </button>
             </div>
 
             <div className="">
               <span className="text-[20px] text-[#000]">
-                Don’t have an account?
+                Bạn chưa có tài khoản?
               </span>
               <Link to={"/role"} className="text-[20px] no-underline pl-4">
-                Signup
+                Đăng ký ngay!
               </Link>
             </div>
           </form>
@@ -108,16 +108,10 @@ function Login() {
         <div className="w-full h-full flex items-center">
           <div className="w-full gap-5 grid">
             <span className="text-[60px] text-[#FFF] font-bold">
-              Welcome to artspectrum
+              Chào mừng bạn đến với Artspectrum
             </span>
             <span className="text-[18px] text-[#fff]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse suscipit, leo sed vulputate porttitor, tortor eros
-              convallis arcu, in ornare sapien orci quis lacus. Morbi eu urna
-              odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Integer eget orci sem. Curabitur aliquet feugiat pulvinar. Fusce
-              sed auctor turpis, ac vestibulum libero. Aenean egestas molestie
-              lorem, a cursus dui imperdiet eu.
+              Art Spectrum là website kết nối những người yêu nghệ thuật. Đây là nơi mọi người có thể thảo luận về quan điểm nghệ thuật cũng như nơi mua bán tranh.
             </span>
           </div>
         </div>

@@ -14,7 +14,7 @@ function About() {
         />
         <div className="w-[530px] absolute top-[300px] right-[100px]">
           <span className="flex justify-start items-start text-[60px] font-bold text-[#fff]">
-            About Us
+            Giới thiệu 
           </span>
         </div>
       </div>
@@ -23,22 +23,26 @@ function About() {
           <div className="w-[45%] h-[650px] bg-[#c4c4c4]" style={{backgroundImage: `url(${bg_11})`,}}/>
           <div className="w-[60%] px-28">
             <div className="text-[36px] font-bold leading-[50.73px] text-[#000] ">
-              Who are we?
+              Chúng tôi là ai ?
             </div>
             <div className="text-[18px] font-normal leading-[25.848px] text-[#000] my-[50px]  text-left">
-            ArtSpectrum, an art and technology enterprise based in Ho Chi Minh City. Founded in 2024, ArtSpectrum aims to revolutionize the art market in Vietnam by providing an online platform where artists and art enthusiasts can exchange products and knowledge. 
+            ArtSpectrum, một doanh nghiệp nghệ thuật và công nghệ có trụ sở tại Thành phố Hồ Chí Minh. 
+            Được thành lập vào năm 2024, ArtSpectrum đặt mục tiêu cách mạng hóa thị trường nghệ thuật tại Việt Nam 
+            bằng cách cung cấp một nền tảng trực tuyến nơi các nghệ sĩ và những người đam mê nghệ thuật có thể trao đổi sản phẩm và kiến ​​thức. 
             </div>
           </div>
         </div>
         <div className="flex items-center my-28">
           <div className="w-[60%] text-center px-28">
             <div className="text-[18px] font-normal leading-[25.848px] text-[#000] my-[50px]  text-left">
-            The platform caters to individuals with a strong passion for art, offering a diverse range of art products for buying and selling. ArtSpectrum's vision is to empower Vietnamese artists to monetize their creativity while enabling art lovers to own unique pieces. With a commitment to fostering a positive online environment for creativity to flourish, ArtSpectrum seeks to break the boundaries of traditional art markets and unlock a spectrum of artistic passion and innovation.
+            Nền tảng này phục vụ những cá nhân có niềm đam mê nghệ thuật mãnh liệt, cung cấp nhiều loại sản phẩm nghệ thuật để mua và bán. 
+            Tầm nhìn của ArtSpectrum là trao quyền cho các nghệ sĩ Việt Nam kiếm tiền từ sự sáng tạo của họ đồng thời tạo điều kiện cho những người 
+            yêu nghệ thuật sở hữu những tác phẩm độc đáo. Với cam kết thúc đẩy môi trường trực tuyến tích cực để khả năng sáng tạo phát triển, 
+            ArtSpectrum tìm cách phá vỡ ranh giới của thị trường nghệ thuật truyền thống và mở ra nhiều niềm đam mê nghệ thuật và sự đổi mới.
             </div>
             <div className="text-[18px] font-normal leading-[25.848px] text-[#000] my-[50px]  text-left">
-              Join us on the journey of exploring art
-              by visiting the ArtSpectrum website today and discover the diverse
-              and wonderful world of art paintings.
+            Hãy cùng chúng tôi trên hành trình khám phá nghệ thuật bằng cách truy cập trang web ArtSpectrum 
+            ngay hôm nay và khám phá thế giới tranh nghệ thuật đa dạng và tuyệt vời.
             </div>
           </div>
           <div className="w-[40%] h-[650px] bg-[#c4c4c4]" style={{backgroundImage: `url(${bg_10})`,}}/>

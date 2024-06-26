@@ -55,7 +55,7 @@ function Register() {
             noValidate
           >
             <span className="text-[32px] text-[#206bff] font-semibold">
-              REGISTER
+              ĐĂNG KÝ TÀI KHOẢN
             </span>
             <div>
               <div className="relative">
@@ -63,7 +63,7 @@ function Register() {
                   type="text"
                   name="username"
                   className="w-2/3 bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-                  placeholder="Username"
+                  placeholder="Tên người dùng"
                   onChange={handleChange}
                   value={values.username || ""}
                   required
@@ -75,7 +75,7 @@ function Register() {
                   type="text"
                   name="fullName"
                   className="w-2/3 bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-                  placeholder="Full name"
+                  placeholder="Họ và tên"
                   onChange={handleChange}
                   value={values.fullName || ""}
                   required
@@ -99,7 +99,7 @@ function Register() {
                   type="text"
                   name="phoneNumber"
                   className="w-2/3 bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-                  placeholder="Phone number"
+                  placeholder="Số điện thoại"
                   onChange={handleChange}
                   value={values.phoneNumber || ""}
                   required
@@ -111,7 +111,7 @@ function Register() {
                   type="text"
                   name="address"
                   className="w-2/3 bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-                  placeholder="Address"
+                  placeholder="Địa chỉ"
                   onChange={handleChange}
                   value={values.address || ""}
                   required
@@ -123,7 +123,7 @@ function Register() {
                   type="password"
                   name="password"
                   className="w-2/3 bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-                  placeholder="Password"
+                  placeholder="Mật khẩu"
                   onChange={handleChange}
                   value={values.password || ""}
                   required
@@ -135,7 +135,7 @@ function Register() {
                   type="password"
                   name="confirmPassword"
                   className="w-2/3 bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-                  placeholder="Confirm Password"
+                  placeholder="Xác nhận mật khẩu"
                   onChange={handleChange}
                   value={values.confirmPassword || ""}
                   required
@@ -145,16 +145,16 @@ function Register() {
             </div>
             <div>
               <button className="bg-[#fb9054] rounded-[12px] border-none w-1/2 p-2">
-                <span className="text-[20px] text-[#fff]">REGISTER</span>
+                <span className="text-[20px] text-[#fff]">TẠO TÀI KHOẢN</span>
               </button>
             </div>
 
             <div className="">
               <span className="text-[20px] text-[#000]">
-                Already have an account?
+                Bạn đã có tài khoản?
               </span>
               <Link to={"/login"} className="text-[20px] no-underline pl-4">
-                Login
+                ĐĂNG NHẬP
               </Link>
             </div>
           </form>
@@ -164,16 +164,10 @@ function Register() {
         <div className="w-full h-full flex items-center">
           <div className="w-full gap-5 grid">
             <span className="text-[60px] text-[#FFF] font-bold">
-              Welcome to artspectrum
+              Chào mừng bạn đến với Artspectrum
             </span>
             <span className="text-[18px] text-[#fff]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse suscipit, leo sed vulputate porttitor, tortor eros
-              convallis arcu, in ornare sapien orci quis lacus. Morbi eu urna
-              odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Integer eget orci sem. Curabitur aliquet feugiat pulvinar. Fusce
-              sed auctor turpis, ac vestibulum libero. Aenean egestas molestie
-              lorem, a cursus dui imperdiet eu.
+              Art Spectrum là website kết nối những người yêu nghệ thuật. Đây là nơi mọi người có thể thảo luận về quan điểm nghệ thuật cũng như nơi mua bán tranh.
             </span>
           </div>
         </div>

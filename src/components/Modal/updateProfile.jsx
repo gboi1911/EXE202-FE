@@ -73,7 +73,7 @@ function UpdateProfileModal() {
   }
   return (
     <div className="customModal--sign-in options-modal">
-      <h3 className="heading">Update Profile</h3>
+      <h3 className="heading">Cập nhật thông tin</h3>
       <form className="w-full gap-5 grid" onSubmit={handleSubmit} noValidate>
         <div>
           <div className="relative text-center">
@@ -113,7 +113,7 @@ function UpdateProfileModal() {
               type="text"
               name="fullName"
               className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              placeholder="FullName"
+              placeholder="Họ và tên"
               onChange={handleChange}
               value={
                 values.fullName ||
@@ -130,7 +130,7 @@ function UpdateProfileModal() {
               type="text"
               name="address"
               className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              placeholder="Address"
+              placeholder="Địa chỉ"
               onChange={handleChange}
               value={
                 values.address ||
@@ -145,7 +145,7 @@ function UpdateProfileModal() {
               type="text"
               name="phoneNumber"
               className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              placeholder="Phone Number"
+              placeholder="Số điện thoại"
               onChange={handleChange}
               value={
                 values.phoneNumber ||
@@ -162,7 +162,7 @@ function UpdateProfileModal() {
               type="password"
               name="password"
               className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              placeholder="Create Password"
+              placeholder="Đổi mật khẩu"
               onChange={handleChange}
               value={values.password || ""}
               required
@@ -174,7 +174,7 @@ function UpdateProfileModal() {
               type="password"
               name="confirmPassword"
               className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              placeholder="Confirm Password"
+              placeholder="Xác nhận mật khẩu"
               onChange={handleChange}
               value={values.confirmPassword || ""}
               required
@@ -184,7 +184,7 @@ function UpdateProfileModal() {
         </div>
         <div className="text-center">
           <button className="bg-[#fb9054] rounded-[12px] border-none w-1/2 p-2">
-            <span className="text-[20px] text-[#fff]">Submit</span>
+            <span className="text-[20px] text-[#fff]">Cập nhật</span>
           </button>
         </div>
       </form>

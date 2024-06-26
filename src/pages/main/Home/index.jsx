@@ -29,24 +29,23 @@ function Home() {
           }}
         />
         <div className="w-[530px] absolute top-[200px] left-[300px]">
-          <span className="flex justify-start items-start text-[60px] font-bold text-[#fff]">
-            Ready to dive in the world of art?
+          <span className="flex justify-start items-start text-[50px] font-bold text-[#fff]">
+            Bạn đã sẵn sàng bước vào thế giới nghệ thuật của chúng tôi chưa ? 
           </span>
           <span className="flex justify-start items-start text-[20px] font-normal text-[#fff] py-10">
-            Immerse yourself in breathtaking artworks and inspiring stories on
-            our art website.
+            Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
           </span>
           <Link to="/products">
           <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
             <span className="text-[20px] text-[#fff]">
-              Discover ArtSpectrum
+              Khám phá ArtSpectrum
             </span>
           </button>
           </Link>
         </div>
       </div>
       <div className="m-20">
-        <div className="text-[28px] font-bold mb-20">Latest Uploaded</div>
+        <div className="text-[28px] font-bold mb-20">Mới nhất</div>
         <div className="overflow-x-scroll whitespace-nowrap">
           <ul className="flex flex-row gap-10 list-none">
             {products && products.length > 0 ? (
@@ -103,7 +102,7 @@ function Home() {
         </div>
       </div>
       <div className="m-20">
-        <div className="text-[28px] font-bold mb-20">Hotest Items</div>
+        <div className="text-[28px] font-bold mb-20">Sản phẩm nổi tiếng</div>
         <div className="overflow-x-scroll whitespace-nowrap">
           <ul className="flex flex-row gap-10 list-none">
             {products && products.length > 0 ? (
@@ -160,7 +159,7 @@ function Home() {
         </div>
       </div>
       <div className="m-20">
-        <div className="text-[28px] font-bold mb-20">Recently Viewed</div>
+        <div className="text-[28px] font-bold mb-20">Đã xem gần đây</div>
         <div className="overflow-x-scroll whitespace-nowrap">
           <ul className="flex flex-row gap-10 list-none">
             {products && products.length > 0 ? (

@@ -18,34 +18,34 @@ function Role() {
         >
           <div className="w-full gap-10 grid">
             <span className="text-[50px] text-[#000] font-bold">
-              what role do you want us to see as?
+              Mục đích bạn tham gia với chúng tôi?
             </span>
             <div>
               <button
                 className="bg-[#206CFF] rounded-[12px] border-none w-2/3 p-4"
                 onClick={() => navigation("/register?role=buyer")}
               >
-                <span className="text-[20px] text-[#fff]">BUY ART</span>
+                <span className="text-[20px] text-[#fff]">MUA TÁC PHẨM</span>
               </button>
             </div>
-            <span className="text-[40px] text-[#000]">Or</span>
+            <span className="text-[40px] text-[#000]">Hoặc</span>
             <div>
               <button
                 className="bg-[#206CFF] rounded-[12px] border-none w-2/3 p-4"
                 onClick={() => navigation("/register?role=Artist")}
               >
-                <span className="text-[20px] text-[#fff]">SELL ART</span>
+                <span className="text-[20px] text-[#fff]">BÁN TÁC PHẨM</span>
               </button>
             </div>
             <div className="flex justify-around items-center">
               <Link to={"/"} className="text-[20px] no-underline">
-                Back
+                Trở về
               </Link>
               <Link
                 to={"/register?role=buyer"}
                 className="text-[20px] no-underline"
               >
-                Next
+                Bước tiếp theo
               </Link>
             </div>
           </div>
