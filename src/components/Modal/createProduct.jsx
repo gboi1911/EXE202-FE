@@ -3,7 +3,6 @@ import Select from "react-select";
 import useForm from "./../../hooks/useForm";
 import { validateProduct } from "../validateInput/validateInput";
 import Validate from "./../validateInput/index";
-import { useIsLogin } from "../../hooks/useIsLogin";
 import { toast } from "react-toastify";
 import { close } from "../../store/modal/modal-slice";
 import { useEffect, useState } from "react";
@@ -11,12 +10,10 @@ import { storeImageToFireBase } from "./../../utils/storeImageToFirebase";
 import { postProduct } from "../../api/product";
 function CreateProductModal({ dataArtist, dataSale }) {
   const dispatch = useDispatch();
-  const { isLogin } = useIsLogin();
   const { values, errors, handleChange, handleSubmit } = useForm(
     login,
     validateProduct
   );
-  const [selectedArtist, setSelectedArtist] = useState(false);
   const [selectedSale, setSelectedSale] = useState(false);
   const [selectedFile, setSelectedFile] = useState(false);
   const [image, setImage] = useState(false);
@@ -24,13 +21,6 @@ function CreateProductModal({ dataArtist, dataSale }) {
   async function login() {
     if (!image) {
       return toast.error("chose image!", {
-        position: "top-right",
-        autoClose: 2000,
-        theme: "light",
-      });
-    }
-    if (!selectedArtist?.value) {
-      return toast.error("chose artist!", {
         position: "top-right",
         autoClose: 2000,
         theme: "light",
@@ -47,7 +37,7 @@ function CreateProductModal({ dataArtist, dataSale }) {
       title: values.title,
       description: values.description,
       imageUrl: image,
-      artistsId: selectedArtist?.value,
+      artistsId: dataArtist.artistId,
       saleId: selectedSale?.value,
       price: values.price,
       salesPrice: values.salesPrice,
@@ -57,13 +47,13 @@ function CreateProductModal({ dataArtist, dataSale }) {
       dispatch(close());
       toast.success("create successfully!", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1000,
         theme: "light",
       });
     } else {
       toast.error("create failed!", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1000,
         theme: "light",
       });
     }
@@ -110,7 +100,7 @@ function CreateProductModal({ dataArtist, dataSale }) {
   };
   return (
     <div className="customModal--sign-in options-modal">
-      <h3 className="heading">Create Blog</h3>
+      <h3 className="heading">Tạo tranh mới</h3>
       <form className="w-full gap-5 grid" onSubmit={handleSubmit} noValidate>
         <div>
           <div className="relative text-center">
@@ -169,16 +159,6 @@ function CreateProductModal({ dataArtist, dataSale }) {
               required
             />
             <Validate errors={errors.title} />
-          </div>
-          <div className="relative text-center flex justify-center">
-            <Select
-              styles={colorStyles}
-              options={dataArtist}
-              value={selectedArtist}
-              onChange={(selectedOption) => setSelectedArtist(selectedOption)}
-              className="w-[83%] bg-[#d9d9d9] rounded-[13px] border-none text-lg p-2 mt-6"
-              classNamePrefix="react-select"
-            />
           </div>
           <div className="relative text-center flex justify-center">
             <Select
