@@ -72,13 +72,7 @@ function Checkout() {
 
               // Access properties directly
               const code = dataPayment.code;
-              const desc = dataPayment.desc;
               const data = dataPayment.data;
-
-              // Log the properties
-              console.log("Code:", code);
-              console.log("Description:", desc);
-              console.log("Data:", data);
 
               // Proceed with existing logic
               if (code === "00") {
@@ -174,7 +168,14 @@ function Checkout() {
                       >
                         <div className="font-semibold">{item.title}</div>
                         <div className="font-bold text-[#FF7020] text-[20px]">
-                          {item.price * item.paintingQuantity[0].quantity} VND
+                          <div className="flex gap-10">
+                            <div className="text-[#afa9a9] text-[18px]">
+                              x{item.paintingQuantity[0].quantity}
+                            </div>
+                            <div className="text-[#afa9a9] text-[18px]">
+                              {item.price} VND
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
