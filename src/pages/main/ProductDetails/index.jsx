@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Carousel } from "@material-tailwind/react";
 import { Link, useParams } from "react-router-dom";
 import {
   getArtistById,
@@ -23,15 +22,15 @@ function ProductDetails() {
     if (data.succeeded) {
       setPainting(data.data);
       console.log(data.data.artistsId);
-    }
-    const dataArtist = await getArtistById(data.data.artistsId);
-    if (dataArtist.succeeded) {
-      setArtist(dataArtist.data);
-    }
-    const dataUser = await getUserById(dataArtist.data.userId);
-    if (dataUser.succeeded) {
-      setUser(dataUser.data);
-      console.log(dataUser.data);
+      const dataArtist = await getArtistById(data.data.artistsId);
+      if (dataArtist.succeeded) {
+        setArtist(dataArtist.data);
+        const dataUser = await getUserById(dataArtist.data.userId);
+        if (dataUser.succeeded) {
+          setUser(dataUser.data);
+          console.log(dataUser.data);
+        }
+      }
     }
   }
   async function addToCart(paintingId) {
@@ -62,32 +61,21 @@ function ProductDetails() {
       });
     }
   }
-  async function fetchGetArtistName() {
-    const dataArtist = await getArtistById(painting.artistsId);
-    if (dataArtist.succeeded) {
-      setArtist(dataArtist.data);
-    }
-    const dataUser = await getUserById(dataArtist.data.userId);
-    if (dataUser.succeeded) {
-      setUser(dataUser.data);
-    }
-  }
   useEffect(() => {
     fetchGetProductById();
-    fetchGetArtistName();
   }, []);
   return (
     <div>
       <div className="flex justify-between mb-10">
         <div className="w-[50%] flex justify-center">
-          <Carousel className="w-[684px] h-[524px]">
+          <div className="w-[684px] h-[524px]">
             <div
               className="w-[684px] h-[524px] bg-cover bg-no-repeat relative rounded-2xl"
               style={{
                 backgroundImage: `url(${painting?.imageUrl})`,
               }}
             />
-          </Carousel>
+          </div>
         </div>
         <div className="w-[50%] flex flex-col justify-center">
           <div className="text-[24px] font-bold mb-5">
@@ -96,11 +84,6 @@ function ProductDetails() {
           <div className="mb-5">{painting?.description}</div>
           <div className="text-[24px]">{painting?.price} VND</div>
           <div className="flex gap-10">
-            <Link to="/checkout">
-              <button className="w-[228px] h-[57px] bg-white border-[#FF7020] text-[#FF7020] text-[18px] rounded-xl mt-10 cursor-pointer hover:bg-[#FF7020] hover:text-white">
-                Mua ngay
-              </button>
-            </Link>
             <div>
               <button
                 className="w-[228px] h-[57px] bg-white border-[#FF7020] text-[#FF7020] text-[18px] rounded-xl mt-10 cursor-pointer hover:bg-[#FF7020] hover:text-white"
