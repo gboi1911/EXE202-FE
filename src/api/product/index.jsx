@@ -1,3 +1,5 @@
+import { getStorage } from "../../utils/helper";
+
 const url = import.meta.env.VITE_APP_BASE_API;
 
 export const getProducts = async () => {
@@ -52,20 +54,6 @@ export const postProduct = async (user) => {
     body: JSON.stringify(user),
   })
     .then((response) => {
-      return response.json();
-    })
-    .catch((err) => console.log(err));
-};
-
-export const deleteProductById = async (values) => {
-  return fetch(`${url}/painting/${values}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async (response) => {
       return response.json();
     })
     .catch((err) => console.log(err));

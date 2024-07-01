@@ -1,8 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import vector_3 from "../../assets/images/Vector_3.png";
-import vector_7 from "../../assets/images/Vector_7.png";
-import { useIsLogin } from './../../hooks/useIsLogin';
+import { useIsLogin } from "./../../hooks/useIsLogin";
 import Menu from "./menu";
 import { useDispatch } from "react-redux";
 import { actLogout } from "../../store/profile/profile-slice";
@@ -84,10 +82,7 @@ function Header() {
             </div>
           </div> */}
           {isLogin ? (
-            <Menu
-              handleLogout={handleLogout}
-              isLogin={isLogin}
-            />
+            <Menu handleLogout={handleLogout} isLogin={isLogin} />
           ) : (
             <>
               <button

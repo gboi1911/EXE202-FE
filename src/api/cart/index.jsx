@@ -96,8 +96,8 @@ export const addCart = async (values) => {
     })
     .catch((err) => console.log(err));
 };
-export const checkOut = async (values, orderId) => {
-  return fetch(`${url}/payment/${orderId}`, {
+export const order = async (values) => {
+  return fetch(`${url}/order`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -110,3 +110,66 @@ export const checkOut = async (values, orderId) => {
     })
     .catch((err) => console.log(err));
 };
+export const orderDetail = async (values) => {
+  return fetch(`${url}/order-detail`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  })
+    .then(async (response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+export const checkOut = async (orderId) => {
+  try {
+    const response = await fetch(`${url}/payment/${orderId}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderId),
+    });
+
+    // Return the response object directly
+    return response;
+  } catch (error) {
+    console.error("Error during checkout:", error);
+    // Consider throwing the error for further handling (optional)
+  }
+};
+
+// export const checkOut = async (orderId) => {
+//   try {
+//     const response = await fetch(`${url}/payment/${orderId}`, {
+//       method: "POST",
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ orderId }),
+//     });
+
+//     if (response.status === 409) {
+//       // Handle conflict, e.g., by alerting the user
+//       alert(
+//         "This order cannot be processed due to a conflict. Please check the order details and try again."
+//       );
+//       return;
+//     }
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error ${response.status}`);
+//     }
+
+//     return response.json();
+//   } catch (err) {
+//     console.error(err);
+//     // Consider how to handle errors and communicate them to the user
+//     throw err;
+//   }
+// };

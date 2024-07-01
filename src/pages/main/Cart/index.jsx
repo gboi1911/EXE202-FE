@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import {
   deleteCart,
   deleteItem,
@@ -38,7 +37,7 @@ function Cart() {
     const data = await getCartByUserId(isLogin.userCredentials.userId);
     if (data.succeeded) {
       dispatch(getCart(data.data));
-    } else{
+    } else {
       dispatch(getCart([]));
     }
   }
@@ -187,7 +186,7 @@ function Cart() {
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/0475700f2c913a1dcd54b550e7b5129a3cb6976d2eb4ce886e4391210ae16749?apiKey=7cd5fba2528f41be8b8a80243d57d2c2&"
                           alt=""
                           className="shrink-0 aspect-[1.08] w-[60px]"
-                          onClick={() =>handleDeleteItem(item.cartId)}
+                          onClick={() => handleDeleteItem(item.cartId)}
                         />
                       </div>
                     </div>

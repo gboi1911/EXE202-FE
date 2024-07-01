@@ -30,17 +30,18 @@ function Home() {
         />
         <div className="w-[530px] absolute top-[200px] left-[300px]">
           <span className="flex justify-start items-start text-[50px] font-bold text-[#fff]">
-            Bạn đã sẵn sàng bước vào thế giới nghệ thuật của chúng tôi chưa ? 
+            Bạn đã sẵn sàng bước vào thế giới nghệ thuật của chúng tôi chưa ?
           </span>
           <span className="flex justify-start items-start text-[20px] font-normal text-[#fff] py-10">
-            Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
+            Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu
+            chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
           </span>
           <Link to="/products">
-          <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
-            <span className="text-[20px] text-[#fff]">
-              Khám phá ArtSpectrum
-            </span>
-          </button>
+            <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
+              <span className="text-[20px] text-[#fff]">
+                Khám phá ArtSpectrum
+              </span>
+            </button>
           </Link>
         </div>
       </div>
@@ -66,9 +67,6 @@ function Home() {
                     <div className="mt-7 ml-7">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
-                      </div>
-                      <div className="text-[18px] text-[#8D8D8D] mb-10">
-                        ...sold
                       </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">
@@ -124,9 +122,6 @@ function Home() {
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
                       </div>
-                      <div className="text-[18px] text-[#8D8D8D] mb-10">
-                        ...sold
-                      </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">
                       <div className="text-[#FF7020] text-[20px] font-semibold">
@@ -180,9 +175,6 @@ function Home() {
                     <div className="mt-7 ml-7">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
-                      </div>
-                      <div className="text-[18px] text-[#8D8D8D] mb-10">
-                        ...sold
                       </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">

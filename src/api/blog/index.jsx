@@ -45,17 +45,3 @@ export const postBlog = async (user) => {
     })
     .catch((err) => console.log(err));
 };
-
-export const deleteBlogById = async (values) => {
-  return fetch(`${url}/blog/${values}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  })
-    .then(async (response) => {
-      return response.json();
-    })
-    .catch((err) => console.log(err));
-};

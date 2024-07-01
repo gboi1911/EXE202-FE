@@ -5,7 +5,7 @@ import { getProducts } from "../../../api/product";
 import { useDispatch } from "react-redux";
 import { useIsLogin } from "../../../hooks/useIsLogin";
 import { open } from "../../../store/modal/modal-slice";
-import { getArtist } from "../../../api/blog";
+import { getArtist } from "../../../api/product/";
 import { getSale } from "../../../api/product";
 import CreateProductModal from "../../../components/Modal/createProduct";
 function Products() {
@@ -23,10 +23,6 @@ function Products() {
   async function fetchGetArtist() {
     const data = await getArtist();
     if (data.succeeded) {
-      for (let i = 0; i < data.data.length; i++) {
-        data.data[i].value = data.data[i].artistId;
-        data.data[i].label = `artistId - ${data.data[i].artistId}`;
-      }
       setDataArtist(data.data);
     }
   }
@@ -49,6 +45,7 @@ function Products() {
 
   const handleClick = (product) => {
     navigate(`/products/${product.paintingId}`);
+    window.scrollTo(0, 0);
   };
   const [products, setProducts] = useState([]);
   const filterProducts = () => {
@@ -89,6 +86,7 @@ function Products() {
     fetchGetSale();
     fetchGetProducts();
   }, [products]);
+  console.log(isLogin.userCredentials.fullName);
   return (
     <div>
       <div className="relative">
@@ -103,16 +101,22 @@ function Products() {
             Bạn đã sẵn sàng bước vào thế giới nghệ thuật của chúng tôi chưa ?
           </span>
           <span className="flex justify-start items-start text-[20px] font-normal text-[#fff] py-10">
-            Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
-          </span>          
-          {["admin", "artist"].includes(isLogin.userCredentials.role.toLowerCase()) && (
-            <button
-              className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
-              onClick={onCreateProduct}
-            >
-              <span className="text-[20px] text-[#000]">Hãy thêm những bức tranh mới</span>
-            </button>
-          )}
+            Đắm chìm trong những tác phẩm nghệ thuật ngoạn mục và những câu
+            chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
+          </span>
+          {isLogin &&
+            ["admin", "artist"].includes(
+              isLogin.userCredentials.role.toLowerCase()
+            ) && (
+              <button
+                className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
+                onClick={onCreateProduct}
+              >
+                <span className="text-[20px] text-[#000]">
+                  Hãy thêm những bức tranh mới
+                </span>
+              </button>
+            )}
         </div>
       </div>
       <div className="flex m-20">
@@ -120,10 +124,10 @@ function Products() {
           <div className="w-[351px] h-[838px] mt-5 ml-10">
             <div className="w-[355px] h-[660px]">
               <div className="[font-family:'Poppins',Helvetica] font-semibold text-black text-[30px] tracking-[0] leading-[normal]">
-                Filters
+                Bộ lọc
               </div>
               <div className="[font-family:'Poppins',Helvetica] text-black text-[20px] mt-5">
-                Price
+                Giá
               </div>
               <div className="flex flex-col justify-center gap-4 my-4 absolute mt-5">
                 <div className="flex gap-3 items-center">
@@ -132,7 +136,7 @@ function Products() {
                     className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
                   ></button>
                   <p className="[font-family:'Poppins',Helvetica] text-black]">
-                    All
+                    Tất cả
                   </p>
                 </div>
                 <div className="flex gap-3 items-center">
@@ -141,7 +145,7 @@ function Products() {
                     className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
                   ></button>
                   <p className="[font-family:'Poppins',Helvetica] text-black]">
-                    Below $500
+                    Dưới $500
                   </p>
                 </div>
 
@@ -151,7 +155,7 @@ function Products() {
                     className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
                   ></button>
                   <p className="[font-family:'Poppins',Helvetica] text-black]">
-                    $500 to $2000
+                    $500 - $2000
                   </p>
                 </div>
                 <div className="flex gap-3 items-center">
@@ -160,7 +164,7 @@ function Products() {
                     className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
                   ></button>
                   <p className="[font-family:'Poppins',Helvetica] text-black]">
-                    Greater than $2000
+                    Trên $2000
                   </p>
                 </div>
               </div>
@@ -187,9 +191,6 @@ function Products() {
                     <div className="mt-7 ml-7">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
-                      </div>
-                      <div className="text-[18px] text-[#8D8D8D] mb-10">
-                        ...sold
                       </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">
@@ -225,7 +226,7 @@ function Products() {
           <div className="pagination ml-14 mt-5">
             {pageNumbers.map((number) => (
               <button
-                className="w-[30px] h-[30px] bg-[#FF7020] text-white border-none shadow-lg cursor-pointer hover:bg-[#9c6a4c]"
+                className="w-[30px] h-[30px] ml-3 bg-[#FF7020] text-white border-none shadow-lg cursor-pointer hover:bg-[#9c6a4c]"
                 key={number}
                 onClick={() => setCurrentPage(number)}
               >

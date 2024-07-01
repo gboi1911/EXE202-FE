@@ -29,6 +29,7 @@ function Menu({ handleLogout, isLogin }) {
   }, []);
   const handleClick = () => {
     navigate("/cart");
+    window.scrollTo(0, 0);
   };
   return (
     <>
