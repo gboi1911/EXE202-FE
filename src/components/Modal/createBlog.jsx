@@ -27,14 +27,7 @@ function CreateBlogModal({ dataArtist }) {
         autoClose: 2000,
         theme: "light",
       });
-    }
-    if (!selectedArtist?.value) {
-      return toast.error("chose artist!", {
-        position: "top-right",
-        autoClose: 2000,
-        theme: "light",
-      });
-    }
+    }    
     const data = await postBlog({
       titeBlog: values.titeBlog,
       descriptionBlog: values.descriptionBlog,
