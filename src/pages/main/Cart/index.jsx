@@ -6,6 +6,7 @@ import {
   getCartByUserId,
   updateQualityCart,
 } from "../../../api/cart";
+import { getProductById } from "../../../api/product";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../../store/cart/cart-slice";
 import { useIsLogin } from "../../../hooks/useIsLogin";
@@ -83,21 +84,44 @@ function Cart() {
       paintingId: paintingId,
       quantity: quantity,
     };
-    const data = await updateQualityCart(values, cartId);
-
-    if (data.succeeded) {
-      const data = await getCartByUserId(isLogin.userCredentials.userId);
-      if (data.succeeded) {
-        dispatch(getCart(data.data));
+  
+    // Fetch the maximum available quantity for the painting
+    const paintingData = await getProductById(paintingId);
+    if (paintingData.succeeded) {
+      const maxQuantity = paintingData.data.stockQuantity;
+  
+      // Check if the desired quantity is within the allowable range
+      if (quantity <= maxQuantity) {
+        const data = await updateQualityCart(values, cartId);
+  
+        if (data.succeeded) {
+          const cartData = await getCartByUserId(isLogin.userCredentials.userId);
+          if (cartData.succeeded) {
+            dispatch(getCart(cartData.data));
+          }
+        } else {
+          toast.error("Update Cart failed!", {
+            position: "top-right",
+            autoClose: 2000,
+            theme: "light",
+          });
+        }
+      } else {
+        toast.error(`Cannot add to cart: Maximum quantity for this product is ${maxQuantity}.`, {
+          position: "top-right",
+          autoClose: 2000,
+          theme: "light",
+        });
       }
     } else {
-      toast.error("update Cart wrong!", {
+      toast.error("Failed to fetch product details!", {
         position: "top-right",
         autoClose: 2000,
         theme: "light",
       });
     }
   }
+  
   const steps = [
     {
       stepNumber: 1,
