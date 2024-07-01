@@ -56,3 +56,17 @@ export const postProduct = async (user) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const deleteProductById = async (values) => {
+  return fetch(`${url}/painting/${values}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
