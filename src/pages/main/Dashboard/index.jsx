@@ -16,13 +16,16 @@ function AdminDashboard() {
 
   async function fetchGetUsers() {
     const data = await getUsers();
+    console.log("getUsers",data);
     if (data.succeeded) {
       setDataUsers(data.data);
     }
   }
 
   async function fetchGetBlogs() {
+    
     const data = await getBlogs();
+    console.log("getBlogs",data);
     if (data.succeeded) {
       setDataBlogs(data.data);
     }
@@ -36,9 +39,10 @@ function AdminDashboard() {
   }
 
   useEffect(() => {
+    fetchGetUsers();
     fetchGetBlogs();
     fetchGetProducts();
-    fetchGetUsers();
+
   }, []);
 
   const handleDeleteUser = async (values) => {
@@ -138,16 +142,17 @@ function AdminDashboard() {
               <ul>
                 {filteredUsers.map(user => (
                   <li key={user.userId} className="border-b py-2 flex justify-between items-center">
-                    <div>
-                      {user.username} ({user.email})
-                    </div>
-                    <button 
-                      className="bg-red-500 text-white p-2 rounded"
-                      onClick={() => handleDeleteUser(user.userId)}
-                    >
-                      Xóa
-                    </button>
-                  </li>
+                  <div className="flex flex-col">
+                    <div>Username: {user.username}</div>
+                    <div>Email: {user.email}</div>
+                  </div>
+                  <button 
+                    className="bg-red-500 text-white p-2 rounded"
+                    onClick={() => handleDeleteUser(user.userId)}
+                  >
+                    Xóa
+                  </button>
+                </li>                
                 ))}
               </ul>
             ) : (
