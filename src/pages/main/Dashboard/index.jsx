@@ -145,6 +145,7 @@ function AdminDashboard() {
                   <div className="flex flex-col">
                     <div>Username: {user.username}</div>
                     <div>Email: {user.email}</div>
+                    <div>Role: {user.role}</div>
                   </div>
                   <button 
                     className="bg-red-500 text-white p-2 rounded"
