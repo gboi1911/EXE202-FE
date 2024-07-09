@@ -100,6 +100,10 @@ function Checkout() {
     }
   }
 
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   const handleCheckOut = () => {
     if (!isLogin) {
       navigate("/login");
@@ -173,7 +177,7 @@ function Checkout() {
                               x{item.paintingQuantity[0].quantity}
                             </div>
                             <div className="text-[#afa9a9] text-[18px]">
-                              {item.price} VND
+                              {formatPrice(item.price)}
                             </div>
                           </div>
                         </div>
@@ -188,12 +192,11 @@ function Checkout() {
                 <div className="flex justify-between mb-5">
                   <div>Subtotal</div>
                   <div>
-                    {listCart.reduce(
+                    {formatPrice(listCart.reduce(
                       (total, item) =>
                         total + item.price * item.paintingQuantity[0].quantity,
                       0
-                    )}{" "}
-                    VND
+                    ))}
                   </div>
                 </div>
                 <div className="flex justify-between mb-5">
@@ -207,12 +210,11 @@ function Checkout() {
               <div className="flex justify-between mt-10 mx-10">
                 <div className="text-[18px] font-semibold">Order Total</div>
                 <div className="text-[20px] text-[#FB9054] font-semibold">
-                  {listCart.reduce(
+                  {formatPrice(listCart.reduce(
                     (total, item) =>
                       total + item.price * item.paintingQuantity[0].quantity,
                     0
-                  )}{" "}
-                  VND
+                  ))}                 
                 </div>
               </div>
               <div className="flex justify-center mt-10">
