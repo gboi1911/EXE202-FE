@@ -180,8 +180,9 @@ function Cart() {
                           backgroundRepeat: "round",
                         }}
                       ></div>
-                      <div className="flex flex-col gap-8 w-[200px]">
-                        <div>{item.title}</div>{formatPrice(item.price)}
+                      <div className="flex flex-col gap-6 w-[200px]">
+                        <div className="text-[22px] font-bold">{item.title}</div>
+                        <div className="text-[#FF7020] text-[20px]">{formatPrice(item.price)}</div>
                         <div>{item.description}</div>
                       </div>
                       <div className="flex ml-[380px]">

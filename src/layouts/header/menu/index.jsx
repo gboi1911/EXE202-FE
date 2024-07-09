@@ -43,7 +43,7 @@ function Menu({ handleLogout, isLogin }) {
           />
           <div className="relative">
             <div
-              className="w-[28px] h-[24px] bg-cover bg-no-repeat"
+              className="w-[28px] h-[24px] bg-cover bg-no-repeat cursor-pointer"
               style={{
                 backgroundImage: `url(${vector_7})`,
               }}
@@ -68,7 +68,7 @@ function Menu({ handleLogout, isLogin }) {
       </div>
       <div className="dropdown-container header-dropdown-menu">
         <button
-          className="flex items-center hover:bg-dark-600 transition-colors h-[42px] py-0 px-3 rounded-lg border-transparent font-semibold button--profile--active bg-dark-600"
+          className="flex items-center hover:bg-dark-600 transition-colors h-[42px] py-0 px-3 rounded-lg border-transparent font-semibold button--profile--active bg-dark-600 cursor-pointer"
           ref={triggerRef}
           onClick={() => setIsActive(!isActive)}
         >

@@ -14,6 +14,12 @@ function AdminDashboard() {
   const [searchProducts, setSearchProducts] = useState('');
   const [searchBlogs, setSearchBlogs] = useState('');
 
+  const [currentPageUsers, setCurrentPageUsers] = useState(1);
+  const [currentPageProducts, setCurrentPageProducts] = useState(1);
+  const [currentPageBlogs, setCurrentPageBlogs] = useState(1);
+
+  const itemsPerPage = 10;
+
   async function fetchGetUsers() {
     const data = await getUsers();
     console.log("getUsers",data);
@@ -23,7 +29,6 @@ function AdminDashboard() {
   }
 
   async function fetchGetBlogs() {
-    
     const data = await getBlogs();
     console.log("getBlogs",data);
     if (data.succeeded) {
@@ -42,7 +47,6 @@ function AdminDashboard() {
     fetchGetUsers();
     fetchGetBlogs();
     fetchGetProducts();
-
   }, []);
 
   const handleDeleteUser = async (values) => {
@@ -101,6 +105,10 @@ function AdminDashboard() {
     }
   }; 
 
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   const filteredUsers = dataUsers.filter(user =>
     user.username.toLowerCase().includes(searchUsers.toLowerCase())
   );
@@ -113,6 +121,29 @@ function AdminDashboard() {
     blog.titeBlog.toLowerCase().includes(searchBlogs.toLowerCase())
   );
 
+  const paginate = (data, currentPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return data.slice(startIndex, startIndex + itemsPerPage);
+  };
+
+  const totalPages = (data) => Math.ceil(data.length / itemsPerPage);
+
+  const renderPagination = (currentPage, setCurrentPage, totalPages) => (
+    <div className="flex justify-center mt-4 overflow-x-auto">
+      <div className="flex space-x-3">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            className={`w-[30px] h-[30px] cursor-pointer hover:bg-[#9c6a4c] ${currentPage === index + 1 ? 'bg-[#FF7020] text-white border-none shadow-lg' : 'bg-white'}`}
+            onClick={() => setCurrentPage(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+  
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="container mx-auto">
@@ -122,13 +153,13 @@ function AdminDashboard() {
           <div className="bg-white p-4 rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-2">Tài khoản</h2>
             <div className="relative mb-4">
-            <input
-              type="text"
-              placeholder="Tìm kiếm tài khoản..."
-              value={searchUsers}
-              onChange={(e) => setSearchUsers(e.target.value)}
-              className="mb-4 p-2 border rounded w-full"
-            />              
+              <input
+                type="text"
+                placeholder="Tìm kiếm tài khoản..."
+                value={searchUsers}
+                onChange={(e) => setSearchUsers(e.target.value)}
+                className="mb-4 p-2 border rounded w-full"
+              />              
               {searchUsers && (
                 <button
                   className="absolute right-2 top-2 text-black-500"
@@ -138,27 +169,28 @@ function AdminDashboard() {
                 </button>
               )}
             </div>            
-            {dataUsers.length ? (
+            {filteredUsers.length ? (
               <ul>
-                {filteredUsers.map(user => (
+                {paginate(filteredUsers, currentPageUsers).map(user => (
                   <li key={user.userId} className="border-b py-2 flex justify-between items-center">
-                  <div className="flex flex-col">
-                    <div>Username: {user.username}</div>
-                    <div>Email: {user.email}</div>
-                    <div>Role: {user.role}</div>
-                  </div>
-                  <button 
-                    className="bg-red-500 text-white p-2 rounded"
-                    onClick={() => handleDeleteUser(user.userId)}
-                  >
-                    Xóa
-                  </button>
-                </li>                
+                    <div className="flex flex-col">
+                      <div>Username: {user.username}</div>
+                      <div>Email: {user.email}</div>
+                      <div>Role: {user.role}</div>
+                    </div>
+                    <button 
+                      className="bg-red-500 text-white p-2 rounded cursor-pointer"
+                      onClick={() => handleDeleteUser(user.userId)}
+                    >
+                      Xóa
+                    </button>
+                  </li>                
                 ))}
               </ul>
             ) : (
               <p>Không tìm thấy.</p>
             )}
+            {renderPagination(currentPageUsers, setCurrentPageUsers, totalPages(filteredUsers))}
           </div>
 
           <div className="bg-white p-4 rounded shadow-md">
@@ -180,19 +212,19 @@ function AdminDashboard() {
                 </button>
               )}
             </div>
-            {dataProducts.length ? (
+            {filteredProducts.length ? (
               <ul>
-                {filteredProducts.map(product => (
+                {paginate(filteredProducts, currentPageProducts).map(product => (
                   <li key={product.paintingId} className="border-b py-2 flex justify-between items-center">
                     <div className="flex items-center">
                       <img src={product.imageUrl} alt={product.title} className="w-16 h-16 object-cover mr-4"/>
-                        <div>
-                          <div>{product.title}</div>
-                          <div>{product.price} VND</div>
-                        </div>
+                      <div>
+                        <div>{product.title}</div>
+                        <div>{formatPrice(product.price)}</div>
+                      </div>
                     </div>
                     <button 
-                      className="bg-red-500 text-white p-2 rounded"
+                      className="bg-red-500 text-white p-2 rounded cursor-pointer"
                       onClick={() => handleDeleteProduct(product.paintingId)}
                     >
                       Xóa
@@ -203,18 +235,19 @@ function AdminDashboard() {
             ) : (
               <p>Không tìm thấy.</p>
             )}
+            {renderPagination(currentPageProducts, setCurrentPageProducts, totalPages(filteredProducts))}
           </div>
 
           <div className="bg-white p-4 rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-2">Bài viết</h2>
             <div className="relative mb-4">
-            <input
-              type="text"
-              placeholder="Tìm kiếm bài viết..."
-              value={searchBlogs}
-              onChange={(e) => setSearchBlogs(e.target.value)}
-              className="mb-4 p-2 border rounded w-full"
-            />
+              <input
+                type="text"
+                placeholder="Tìm kiếm bài viết..."
+                value={searchBlogs}
+                onChange={(e) => setSearchBlogs(e.target.value)}
+                className="mb-4 p-2 border rounded w-full"
+              />
               {searchBlogs && (
                 <button
                   className="absolute right-2 top-2 text-black-500"
@@ -224,9 +257,9 @@ function AdminDashboard() {
                 </button>
               )}
             </div>            
-            {dataBlogs.length ? (
+            {filteredBlogs.length ? (
               <ul>
-                {filteredBlogs.map(blog => (
+                {paginate(filteredBlogs, currentPageBlogs).map(blog => (
                   <li key={blog.blogId} className="border-b py-2 flex justify-between items-center">
                     <div className="flex items-center">
                       <img src={blog.imgBlog} alt={blog.titeBlog} className="w-16 h-16 object-cover mr-4"/>
@@ -235,7 +268,7 @@ function AdminDashboard() {
                       </div>
                     </div>
                     <button 
-                      className="bg-red-500 text-white p-2 rounded"
+                      className="bg-red-500 text-white p-2 rounded cursor-pointer"
                       onClick={() => handleDeleteBlog(blog.blogId)}
                     >
                       Xóa
@@ -246,6 +279,7 @@ function AdminDashboard() {
             ) : (
               <p>Không tìm thấy.</p>
             )}
+            {renderPagination(currentPageBlogs, setCurrentPageBlogs, totalPages(filteredBlogs))}
           </div>
         </div>
       </div>

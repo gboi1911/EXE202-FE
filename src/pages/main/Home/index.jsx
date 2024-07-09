@@ -16,6 +16,10 @@ function Home() {
     fetchGetProducts();
   }, []);
 
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   const handleClick = (product) => {
     navigate(`/products/${product.paintingId}`);
   };
@@ -37,7 +41,7 @@ function Home() {
             chuyện đầy cảm hứng trên trang web nghệ thuật của chúng tôi.
           </span>
           <Link to="/products">
-            <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
+            <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4 cursor-pointer">
               <span className="text-[20px] text-[#fff]">
                 Khám phá ArtSpectrum
               </span>
@@ -64,14 +68,14 @@ function Home() {
                         alt="product_img"
                       />
                     </div>
-                    <div className="mt-7 ml-7">
+                    <div className="mt-7 ml-5">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
                       </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">
                       <div className="text-[#FF7020] text-[20px] font-semibold">
-                        {item.price}
+                        {formatPrice(item.price)}
                       </div>
                       <div className="flex">
                         <div className="text-[#FF7020] text-[20px] font-semibold">
@@ -118,14 +122,14 @@ function Home() {
                         alt="product_img"
                       />
                     </div>
-                    <div className="mt-7 ml-7">
+                    <div className="mt-7 ml-5">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
                       </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">
                       <div className="text-[#FF7020] text-[20px] font-semibold">
-                        {item.price}
+                        {formatPrice(item.price)}
                       </div>
                       <div className="flex">
                         <div className="text-[#FF7020] text-[20px] font-semibold">
@@ -172,14 +176,14 @@ function Home() {
                         alt="product_img"
                       />
                     </div>
-                    <div className="mt-7 ml-7">
+                    <div className="mt-7 ml-5">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
                       </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">
                       <div className="text-[#FF7020] text-[20px] font-semibold">
-                        {item.price}
+                        {formatPrice(item.price)}
                       </div>
                       <div className="flex">
                         <div className="text-[#FF7020] text-[20px] font-semibold">

@@ -53,7 +53,7 @@ function Blogs() {
 
           <div className="flex gap-4 items-center">
             <Link to="/products">
-            <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4">
+            <button className="bg-[#fb9054] rounded-[12px] w-3/2 p-4 cursor-pointer">
               <span className="text-[20px] text-[#000]">
                 Khám phá ArtSpectrum
               </span>
@@ -61,7 +61,7 @@ function Blogs() {
             </Link>
             {["admin", "artist"].includes(isLogin.userCredentials.role.toLowerCase()) && (
               <button
-                className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
+                className="bg-[#fb9054] rounded-[12px] w-3/2 p-4 cursor-pointer"
                 onClick={onCreateBlog}
               >       
                 <span className="text-[20px] text-[#000]">Hãy để lại chia sẻ của bạn</span>
@@ -87,7 +87,7 @@ function Blogs() {
                     backgroundRepeat: "round"}}
                 >
                   <div className="flex justify-center items-center w-[350px] h-[150px] bg-[#fff] shadow-[0_16px_22px_0_rgba(0,0,0,0.03)]  rounded-br-[20px] rounded-bl-[20px] absolute bottom-0">
-                    <span className="text-[16px] font-normal text-[#000] absolute">
+                    <span className="text-[20px] font-bold text-[#000] text-center absolute mx-3">
                       {item.titeBlog}
                     </span>
                   </div>

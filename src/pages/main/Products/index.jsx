@@ -121,7 +121,7 @@ function Products() {
               isLogin.userCredentials.role.toLowerCase()
             ) && (
               <button
-                className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
+                className="bg-[#fb9054] rounded-[12px] w-3/2 p-4 cursor-pointer"
                 onClick={onCreateProduct}
               >
                 <span className="text-[20px] text-[#000]">
@@ -218,7 +218,7 @@ function Products() {
                         alt="product_img"
                       />
                     </div>
-                    <div className="mt-7 ml-7">
+                    <div className="mt-7 ml-5">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
                       </div>
