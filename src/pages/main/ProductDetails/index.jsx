@@ -61,6 +61,11 @@ function ProductDetails() {
       });
     }
   }
+
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   useEffect(() => {
     fetchGetProductById();
   }, []);
@@ -82,7 +87,7 @@ function ProductDetails() {
             {painting?.title} - {}
           </div>
           <div className="mb-5">{painting?.description}</div>
-          <div className="text-[24px]">{painting?.price} VND</div>
+          <div className="text-[24px]">{formatPrice(painting?.price)}</div>
           <div className="flex gap-10">
             <div>
               <button

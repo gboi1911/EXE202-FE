@@ -78,12 +78,18 @@ function Cart() {
       });
     }
   }
+
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   async function handleUpdateQualityCart(cartId, paintingId, quantity) {
     const values = {
       userId: isLogin.userCredentials.userId,
       paintingId: paintingId,
       quantity: quantity,
     };
+      
   
     // Fetch the maximum available quantity for the painting
     const paintingData = await getProductById(paintingId);
@@ -175,7 +181,7 @@ function Cart() {
                         }}
                       ></div>
                       <div className="flex flex-col gap-8 w-[200px]">
-                        <div>{item.title}</div>${item.price}
+                        <div>{item.title}</div>{formatPrice(item.price)}
                         <div>{item.description}</div>
                       </div>
                       <div className="flex ml-[380px]">
@@ -241,7 +247,7 @@ function Cart() {
                       >
                         <div className="font-semibold">{item.title}</div>
                         <div className="font-bold text-[#FF7020] text-[20px]">
-                          ${item.price * item.paintingQuantity[0].quantity}
+                          {formatPrice(item.price * item.paintingQuantity[0].quantity)}
                         </div>
                       </div>
                     )}
@@ -250,12 +256,13 @@ function Cart() {
               : " "}
             <div className="flex justify-between mx-10 mt-10">
               <div className="font-semibold">Tổng cộng</div>
-              <div className="font-bold text-[#FF7020] text-[20px]">
-                $
-                {listCart.reduce(
-                  (total, item) =>
-                    total + item.price * item.paintingQuantity[0].quantity,
-                  0
+              <div className="font-bold text-[#FF7020] text-[20px]">                
+                {formatPrice(
+                  listCart.reduce(
+                    (total, item) =>
+                      total + item.price * item.paintingQuantity[0].quantity,
+                    0
+                  )
                 )}
               </div>
             </div>
