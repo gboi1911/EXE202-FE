@@ -59,26 +59,19 @@ export const postProduct = async (user) => {
     .catch((err) => console.log(err));
 };
 export const getArtist = async () => {
-  const token = JSON.parse(getStorage("userLog"))?.accessToken;
-  console.log(`Token: ${token}`); // Debugging: Log the token
-  const requestUrl = `${url}/artist`;
-  console.log(`Requesting URL: ${requestUrl}`); // Debugging: Log the request URL
-
-  return fetch(requestUrl, {
+  console.log(JSON.parse(getStorage("userLog"))?.accessToken);
+  return fetch(`${url}/artist`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${JSON.parse(getStorage("userLog"))?.accessToken}`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
   })
     .then(async (response) => {
-      if (!response.ok) {
-        throw new Error(`Server responded with ${response.status}`);
-      }
       return response.json();
     })
-    .catch((err) => console.log(`Error: ${err.message}`));
+    .catch((err) => console.log(err));
 };
 export const getArtistById = async (artistId) => {
   return fetch(`${url}/artist/${artistId}`, {

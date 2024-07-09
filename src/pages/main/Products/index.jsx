@@ -97,7 +97,7 @@ function Products() {
     fetchGetArtist();
     fetchGetSale();
     fetchGetProducts();
-  }, [products]);
+  }, []);
   console.log(isLogin.userCredentials.fullName);
   return (
     <div>
