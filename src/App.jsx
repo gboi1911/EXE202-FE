@@ -19,6 +19,7 @@ import Home from "./pages/main/Home";
 import Checkout from "./pages/main/Checkout";
 import Cart from "./pages/main/Cart";
 import AdminDashboard from "./pages/main/Dashboard";
+import CheckoutSuccess from "./pages/main/CheckoutSuccess";
 function App() {
   return (
     <Provider store={store}>
@@ -37,6 +38,7 @@ function App() {
             <Route path="uploadArtwork" element={<UploadArtwork />} />
             <Route path="dashboard" element={<AdminDashboard />} />
           </Route>
+          <Route path="checkout-success" element={<CheckoutSuccess />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/role" element={<Role />} />
