@@ -43,7 +43,7 @@ function Menu({ handleLogout, isLogin }) {
           />
           <div className="relative">
             <div
-              className="w-[28px] h-[24px] bg-cover bg-no-repeat"
+              className="w-[28px] h-[24px] bg-cover bg-no-repeat cursor-pointer"
               style={{
                 backgroundImage: `url(${vector_7})`,
               }}
@@ -68,7 +68,7 @@ function Menu({ handleLogout, isLogin }) {
       </div>
       <div className="dropdown-container header-dropdown-menu">
         <button
-          className="flex items-center hover:bg-dark-600 transition-colors h-[42px] py-0 px-3 rounded-lg border-transparent font-semibold button--profile--active bg-dark-600"
+          className="flex items-center hover:bg-dark-600 transition-colors h-[42px] py-0 px-3 rounded-lg border-transparent font-semibold button--profile--active bg-dark-600 cursor-pointer"
           ref={triggerRef}
           onClick={() => setIsActive(!isActive)}
         >
@@ -100,10 +100,11 @@ function Menu({ handleLogout, isLogin }) {
           }`}
         >
           <ul>
-            <li className="list-item">
+          {["admin"].includes(isLogin.userCredentials.role.toLowerCase()) && (
+              <li className="list-item">
               <Link
                 className="item"
-                to={`/}`}
+                to={`/dashboard`}
                 onClick={() => setIsActive(!isActive)}
               >
                 <svg
@@ -118,9 +119,10 @@ function Menu({ handleLogout, isLogin }) {
                     d="M20 22h-2v-2a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v2H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
                   />
                 </svg>
-                <span>Thông tin cá nhân</span>
+                <span>Quản lý</span>
               </Link>
             </li>
+            )}            
             <li className="list-item">
               <div className="item item--help" onClick={onHelpModal}>
                 <svg

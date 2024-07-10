@@ -90,7 +90,7 @@ function Footer() {
                 MẠNG XÃ HỘI
               </span>
               <div className="flex w-[130px] h-[58px] gap-[14px] items-center flex-nowrap">
-                <div className="p-4 bg-gray-300 rounded-lg">
+                <div className="p-4 bg-gray-300 rounded-lg cursor-pointer">
                   <div
                     className="w-[24px] h-[24px] shrink-0 bg-contain bg-no-repeat"
                     style={{

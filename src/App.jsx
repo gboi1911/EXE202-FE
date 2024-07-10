@@ -18,6 +18,7 @@ import ProductDetails from "./pages/main/ProductDetails";
 import Home from "./pages/main/Home";
 import Checkout from "./pages/main/Checkout";
 import Cart from "./pages/main/Cart";
+import AdminDashboard from "./pages/main/Dashboard";
 function App() {
   return (
     <Provider store={store}>
@@ -34,6 +35,7 @@ function App() {
             <Route path="checkout" element={<Checkout />} />
             <Route path="contactUs" element={<ContactUs />} />
             <Route path="uploadArtwork" element={<UploadArtwork />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

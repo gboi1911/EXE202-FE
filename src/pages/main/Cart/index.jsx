@@ -7,6 +7,7 @@ import {
   order,
   updateQualityCart,
 } from "../../../api/cart";
+import { getProductById } from "../../../api/product";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../../store/cart/cart-slice";
 import { useIsLogin } from "../../../hooks/useIsLogin";
@@ -92,27 +93,56 @@ function Cart() {
       });
     }
   }
+
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   async function handleUpdateQualityCart(cartId, paintingId, quantity) {
     const values = {
       userId: isLogin.userCredentials.userId,
       paintingId: paintingId,
       quantity: quantity,
     };
-    const data = await updateQualityCart(values, cartId);
-
-    if (data.succeeded) {
-      const data = await getCartByUserId(isLogin.userCredentials.userId);
-      if (data.succeeded) {
-        dispatch(getCart(data.data));
+      
+  
+    // Fetch the maximum available quantity for the painting
+    const paintingData = await getProductById(paintingId);
+    if (paintingData.succeeded) {
+      const maxQuantity = paintingData.data.stockQuantity;
+  
+      // Check if the desired quantity is within the allowable range
+      if (quantity <= maxQuantity) {
+        const data = await updateQualityCart(values, cartId);
+  
+        if (data.succeeded) {
+          const cartData = await getCartByUserId(isLogin.userCredentials.userId);
+          if (cartData.succeeded) {
+            dispatch(getCart(cartData.data));
+          }
+        } else {
+          toast.error("Update Cart failed!", {
+            position: "top-right",
+            autoClose: 2000,
+            theme: "light",
+          });
+        }
+      } else {
+        toast.error(`Cannot add to cart: Maximum quantity for this product is ${maxQuantity}.`, {
+          position: "top-right",
+          autoClose: 2000,
+          theme: "light",
+        });
       }
     } else {
-      toast.error("update Cart wrong!", {
+      toast.error("Failed to fetch product details!", {
         position: "top-right",
         autoClose: 2000,
         theme: "light",
       });
     }
   }
+  
   const steps = [
     {
       stepNumber: 1,
@@ -165,8 +195,9 @@ function Cart() {
                           backgroundRepeat: "round",
                         }}
                       ></div>
-                      <div className="flex flex-col gap-8 w-[200px]">
-                        <div>{item.title}</div>${item.price}
+                      <div className="flex flex-col gap-6 w-[200px]">
+                        <div className="text-[22px] font-bold">{item.title}</div>
+                        <div className="text-[#FF7020] text-[20px]">{formatPrice(item.price)}</div>
                         <div>{item.description}</div>
                       </div>
                       <div className="flex ml-[380px]">
@@ -232,7 +263,7 @@ function Cart() {
                       >
                         <div className="font-semibold">{item.title}</div>
                         <div className="font-bold text-[#FF7020] text-[20px]">
-                          ${item.price * item.paintingQuantity[0].quantity}
+                          {formatPrice(item.price * item.paintingQuantity[0].quantity)}
                         </div>
                       </div>
                     )}
@@ -241,12 +272,13 @@ function Cart() {
               : " "}
             <div className="flex justify-between mx-10 mt-10">
               <div className="font-semibold">Tổng cộng</div>
-              <div className="font-bold text-[#FF7020] text-[20px]">
-                $
-                {listCart.reduce(
-                  (total, item) =>
-                    total + item.price * item.paintingQuantity[0].quantity,
-                  0
+              <div className="font-bold text-[#FF7020] text-[20px]">                
+                {formatPrice(
+                  listCart.reduce(
+                    (total, item) =>
+                      total + item.price * item.paintingQuantity[0].quantity,
+                    0
+                  )
                 )}
               </div>
             </div>

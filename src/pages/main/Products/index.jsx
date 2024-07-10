@@ -43,6 +43,10 @@ function Products() {
     }
   }
 
+  function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
+
   const handleClick = (product) => {
     navigate(`/products/${product.paintingId}`);
     window.scrollTo(0, 0);
@@ -50,14 +54,22 @@ function Products() {
   const [products, setProducts] = useState([]);
   const filterProducts = () => {
     switch (selectedRange) {
-      case "below500":
-        return products.filter((product) => product.price < 500);
-      case "500to2000":
+      case "below1000000":
+        return products.filter((product) => product.price < 1000000);
+      case "1000000to2000000":
         return products.filter(
-          (product) => product.price >= 500 && product.price <= 2000
+          (product) => product.price >= 1000000 && product.price <= 2000000
         );
-      case "above2000":
-        return products.filter((product) => product.price > 2000);
+      case "2000000to5000000":
+        return products.filter(
+          (product) => product.price >= 2000000 && product.price <= 5000000
+        );  
+      case "5000000to10000000":
+        return products.filter(
+          (product) => product.price >= 5000000 && product.price <= 10000000
+        );
+      case "above10000000":
+        return products.filter((product) => product.price > 10000000);
       default:
         return products; // No filter applied
     }
@@ -85,7 +97,7 @@ function Products() {
     fetchGetArtist();
     fetchGetSale();
     fetchGetProducts();
-  }, [products]);
+  }, []);
   console.log(isLogin.userCredentials.fullName);
   return (
     <div>
@@ -109,7 +121,7 @@ function Products() {
               isLogin.userCredentials.role.toLowerCase()
             ) && (
               <button
-                className="bg-[#fb9054] rounded-[12px] w-3/2 p-4"
+                className="bg-[#fb9054] rounded-[12px] w-3/2 p-4 cursor-pointer"
                 onClick={onCreateProduct}
               >
                 <span className="text-[20px] text-[#000]">
@@ -141,30 +153,48 @@ function Products() {
                 </div>
                 <div className="flex gap-3 items-center">
                   <button
-                    onClick={() => handlePriceRangeChange("below500")}
+                    onClick={() => handlePriceRangeChange("below1000000")}
                     className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
                   ></button>
                   <p className="[font-family:'Poppins',Helvetica] text-black]">
-                    Dưới $500
+                    Dưới 1.000.000 đ
                   </p>
                 </div>
 
                 <div className="flex gap-3 items-center">
                   <button
-                    onClick={() => handlePriceRangeChange("500to2000")}
+                    onClick={() => handlePriceRangeChange("1000000to2000000")}
                     className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
                   ></button>
                   <p className="[font-family:'Poppins',Helvetica] text-black]">
-                    $500 - $2000
+                    1.000.000 - 2.000.000 đ
                   </p>
                 </div>
                 <div className="flex gap-3 items-center">
                   <button
-                    onClick={() => handlePriceRangeChange("above2000")}
+                    onClick={() => handlePriceRangeChange("2000000to5000000")}
                     className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
                   ></button>
                   <p className="[font-family:'Poppins',Helvetica] text-black]">
-                    Trên $2000
+                    2.000.000 - 5.000.000 đ
+                  </p>
+                </div>
+                <div className="flex gap-3 items-center">
+                  <button
+                    onClick={() => handlePriceRangeChange("5000000to10000000")}
+                    className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
+                  ></button>
+                  <p className="[font-family:'Poppins',Helvetica] text-black]">
+                    5.000.000 - 10.000.000 đ
+                  </p>
+                </div>
+                <div className="flex gap-3 items-center">
+                  <button
+                    onClick={() => handlePriceRangeChange("above10000000")}
+                    className="bg-white [font-family:'Poppins',Helvetica] text-black text-[15px] h-[20px] w-[20px] rounded-full focus:bg-blue-400 cursor-pointer"
+                  ></button>
+                  <p className="[font-family:'Poppins',Helvetica] text-black]">
+                    Trên 10.000.000 đ
                   </p>
                 </div>
               </div>
@@ -188,14 +218,14 @@ function Products() {
                         alt="product_img"
                       />
                     </div>
-                    <div className="mt-7 ml-7">
+                    <div className="mt-7 ml-5">
                       <div className="text-[24px] font-semibold mb-2">
                         {item.title}
                       </div>
                     </div>
                     <div className="flex justify-between mx-5 mb-10">
                       <div className="text-[#FF7020] text-[20px] font-semibold">
-                        {item.price}
+                        {formatPrice(item.price)}
                       </div>
                       <div className="flex">
                         <div className="text-[#FF7020] text-[20px] font-semibold">
