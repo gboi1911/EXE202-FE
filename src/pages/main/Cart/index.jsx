@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   deleteCart,
   deleteItem,
   getCartByUserId,
+  order,
   updateQualityCart,
 } from "../../../api/cart";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,8 +31,22 @@ function Cart() {
   const { isLogin } = useIsLogin();
   const navigate = useNavigate();
   const { listCart } = useSelector((state) => state.cart);
-  const handleClick = () => {
-    navigate("/checkout");
+  const [orderObject, setOrderObject] = useState();
+
+  const handleClick = async () => {
+    async function confirmOrder() {
+      const dataOrder = await order({
+        userId: isLogin.userCredentials.userId,
+        orderDate: new Date().toISOString(),
+        status: "pending",
+      });
+      setOrderObject(dataOrder);
+      return dataOrder; // Return the order data
+    }
+    // Make handleClick async
+    const orderData = await confirmOrder(); // Wait for confirmOrder to finish
+    // Navigate with orderObject as a parameter
+    navigate("/checkout", { state: { orderObject: orderData } });
   };
   async function fetchGetCart() {
     const data = await getCartByUserId(isLogin.userCredentials.userId);

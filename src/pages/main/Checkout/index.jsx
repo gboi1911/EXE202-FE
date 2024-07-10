@@ -1,102 +1,86 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useIsLogin } from "../../../hooks/useIsLogin";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { checkOut, order, orderDetail } from "../../../api/cart";
 
 function Checkout() {
   const { isLogin } = useIsLogin();
   const navigate = useNavigate();
   const { listCart } = useSelector((state) => state.cart);
-  async function confirmOrder() {
-    const dataOrder = await order({
-      userId: isLogin.userCredentials.userId,
-      orderDate: new Date().toISOString(),
-      status: "pending",
-    });
-
-    if (dataOrder.succeeded) {
-      console.log("Order response:", dataOrder.data.orderId);
-
+  const location = useLocation();
+  const orderObject = location.state?.orderObject;
+  console.log("Order Id new", orderObject.data.orderId);
+  async function confirmOrderDetail() {
+    for (let i = 0; i < listCart.length; i++) {
       const dataDetail = await orderDetail({
-        orderId: dataOrder.data.orderId,
-        paintingId: listCart[0].paintingQuantity[0].paintingId,
-        quantity: listCart[0].paintingQuantity[0].quantity,
-        priceAtOrderTime: listCart[0].price,
+        orderId: orderObject.data.orderId,
+        paintingId: listCart[i].paintingQuantity[0].paintingId,
+        quantity: listCart[i].paintingQuantity[0].quantity,
+        priceAtOrderTime: listCart[i]?.price,
       });
+    }
 
-      if (dataDetail.succeeded) {
-        console.log("Order detail response:", dataDetail.succeeded);
+    try {
+      const response = await checkOut(orderObject.data.orderId);
 
+      if (response.ok) {
+        // Log the raw response text
+        const responseText = await response.text();
+        console.log("Raw response text:", responseText);
+
+        let intermediateParsed;
+        let dataPayment;
+
+        // First parsing
         try {
-          const response = await checkOut(dataOrder.data.orderId);
+          intermediateParsed = JSON.parse(responseText);
+          console.log("Intermediate parsed object:", intermediateParsed);
+          console.log(
+            "Type of intermediate parsed object:",
+            typeof intermediateParsed
+          );
+        } catch (e) {
+          console.error("Failed to parse first JSON:", e);
+          return; // Exit if first JSON parsing fails
+        }
 
-          if (response.ok) {
-            // Log the raw response text
-            const responseText = await response.text();
-            console.log("Raw response text:", responseText);
-
-            let intermediateParsed;
-            let dataPayment;
-
-            // First parsing
-            try {
-              intermediateParsed = JSON.parse(responseText);
-              console.log("Intermediate parsed object:", intermediateParsed);
-              console.log(
-                "Type of intermediate parsed object:",
-                typeof intermediateParsed
-              );
-            } catch (e) {
-              console.error("Failed to parse first JSON:", e);
-              return; // Exit if first JSON parsing fails
-            }
-
-            // Second parsing if necessary
-            if (typeof intermediateParsed === "string") {
-              try {
-                dataPayment = JSON.parse(intermediateParsed);
-              } catch (e) {
-                console.error("Failed to parse second JSON:", e);
-                return; // Exit if second JSON parsing fails
-              }
-            } else {
-              dataPayment = intermediateParsed;
-            }
-
-            console.log("Final parsed response object:", dataPayment);
-
-            // Ensure that the parsed object is correctly structured
-            if (dataPayment && typeof dataPayment === "object") {
-              console.log("Type of dataPayment:", typeof dataPayment);
-
-              // Access properties directly
-              const code = dataPayment.code;
-              const data = dataPayment.data;
-
-              // Proceed with existing logic
-              if (code === "00") {
-                window.location.href = data.checkoutUrl;
-              } else {
-                console.error("Checkout unsuccessful:", code);
-              }
-            } else {
-              console.error(
-                "Final parsed response is not an object:",
-                dataPayment
-              );
-            }
-          } else {
-            console.error("Checkout response was not ok:", response.status);
+        // Second parsing if necessary
+        if (typeof intermediateParsed === "string") {
+          try {
+            dataPayment = JSON.parse(intermediateParsed);
+          } catch (e) {
+            console.error("Failed to parse second JSON:", e);
+            return; // Exit if second JSON parsing fails
           }
-        } catch (error) {
-          console.error("Error during checkout:", error);
+        } else {
+          dataPayment = intermediateParsed;
+        }
+
+        console.log("Final parsed response object:", dataPayment);
+
+        // Ensure that the parsed object is correctly structured
+        if (dataPayment && typeof dataPayment === "object") {
+          console.log("Type of dataPayment:", typeof dataPayment);
+
+          // Access properties directly
+          const code = dataPayment.code;
+          const data = dataPayment.data;
+
+          // Proceed with existing logic
+          if (code === "00") {
+            window.location.href = data.checkoutUrl;
+          } else {
+            console.error("Checkout unsuccessful:", code);
+          }
+        } else {
+          console.error("Final parsed response is not an object:", dataPayment);
         }
       } else {
-        console.error("Order detail was not successful:", dataDetail);
+        console.error("Checkout response was not ok:", response.status);
       }
-    } else {
-      console.error("Order creation was not successful:", dataOrder);
+    } catch (error) {
+      console.error("Error during checkout:", error);
     }
   }
 
@@ -104,7 +88,7 @@ function Checkout() {
     if (!isLogin) {
       navigate("/login");
     } else {
-      confirmOrder();
+      confirmOrderDetail();
     }
   };
   return (
