@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   deleteCart,
   deleteItem,
   getCartByUserId,
+  order,
   updateQualityCart,
 } from "../../../api/cart";
 import { getProductById } from "../../../api/product";
@@ -31,8 +32,22 @@ function Cart() {
   const { isLogin } = useIsLogin();
   const navigate = useNavigate();
   const { listCart } = useSelector((state) => state.cart);
-  const handleClick = () => {
-    navigate("/checkout");
+  const [orderObject, setOrderObject] = useState();
+
+  const handleClick = async () => {
+    async function confirmOrder() {
+      const dataOrder = await order({
+        userId: isLogin.userCredentials.userId,
+        orderDate: new Date().toISOString(),
+        status: "pending",
+      });
+      setOrderObject(dataOrder);
+      return dataOrder; // Return the order data
+    }
+    // Make handleClick async
+    const orderData = await confirmOrder(); // Wait for confirmOrder to finish
+    // Navigate with orderObject as a parameter
+    navigate("/checkout", { state: { orderObject: orderData } });
   };
   async function fetchGetCart() {
     const data = await getCartByUserId(isLogin.userCredentials.userId);
@@ -80,8 +95,11 @@ function Cart() {
   }
 
   function formatPrice(price) {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-  };
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  }
 
   async function handleUpdateQualityCart(cartId, paintingId, quantity) {
     const values = {
@@ -89,19 +107,20 @@ function Cart() {
       paintingId: paintingId,
       quantity: quantity,
     };
-      
-  
+
     // Fetch the maximum available quantity for the painting
     const paintingData = await getProductById(paintingId);
     if (paintingData.succeeded) {
       const maxQuantity = paintingData.data.stockQuantity;
-  
+
       // Check if the desired quantity is within the allowable range
       if (quantity <= maxQuantity) {
         const data = await updateQualityCart(values, cartId);
-  
+
         if (data.succeeded) {
-          const cartData = await getCartByUserId(isLogin.userCredentials.userId);
+          const cartData = await getCartByUserId(
+            isLogin.userCredentials.userId
+          );
           if (cartData.succeeded) {
             dispatch(getCart(cartData.data));
           }
@@ -113,11 +132,14 @@ function Cart() {
           });
         }
       } else {
-        toast.error(`Cannot add to cart: Maximum quantity for this product is ${maxQuantity}.`, {
-          position: "top-right",
-          autoClose: 2000,
-          theme: "light",
-        });
+        toast.error(
+          `Cannot add to cart: Maximum quantity for this product is ${maxQuantity}.`,
+          {
+            position: "top-right",
+            autoClose: 2000,
+            theme: "light",
+          }
+        );
       }
     } else {
       toast.error("Failed to fetch product details!", {
@@ -127,7 +149,7 @@ function Cart() {
       });
     }
   }
-  
+
   const steps = [
     {
       stepNumber: 1,
@@ -181,8 +203,12 @@ function Cart() {
                         }}
                       ></div>
                       <div className="flex flex-col gap-6 w-[200px]">
-                        <div className="text-[22px] font-bold">{item.title}</div>
-                        <div className="text-[#FF7020] text-[20px]">{formatPrice(item.price)}</div>
+                        <div className="text-[22px] font-bold">
+                          {item.title}
+                        </div>
+                        <div className="text-[#FF7020] text-[20px]">
+                          {formatPrice(item.price)}
+                        </div>
                         <div>{item.description}</div>
                       </div>
                       <div className="flex ml-[380px]">
@@ -227,9 +253,6 @@ function Cart() {
             : " "}
         </div>
         <div className="side">
-          <div className="w-[507px] h-[88px] border-solid border-orange-700 flex justify-center items-center rounded-2xl">
-            <div className="text-[20px] text-[#FF7020]">VOUCHER GIẢM GIÁ</div>
-          </div>
           <div className="w-[507px] h-fit mt-10 rounded-2xl border-solid border-gray-300">
             <div className="text-[18px] font-semibold mt-7 ml-10">
               Tổng giá trị đơn hàng
@@ -248,7 +271,9 @@ function Cart() {
                       >
                         <div className="font-semibold">{item.title}</div>
                         <div className="font-bold text-[#FF7020] text-[20px]">
-                          {formatPrice(item.price * item.paintingQuantity[0].quantity)}
+                          {formatPrice(
+                            item.price * item.paintingQuantity[0].quantity
+                          )}
                         </div>
                       </div>
                     )}
@@ -257,7 +282,7 @@ function Cart() {
               : " "}
             <div className="flex justify-between mx-10 mt-10">
               <div className="font-semibold">Tổng cộng</div>
-              <div className="font-bold text-[#FF7020] text-[20px]">                
+              <div className="font-bold text-[#FF7020] text-[20px]">
                 {formatPrice(
                   listCart.reduce(
                     (total, item) =>
