@@ -168,7 +168,8 @@ function AdminDashboard() {
                   &times;
                 </button>
               )}
-            </div>            
+            </div> 
+            <p className="mb-4 font-semibold text-2xl">Tổng tài khoản: {dataUsers.length}</p>           
             {filteredUsers.length ? (
               <ul>
                 {paginate(filteredUsers, currentPageUsers).map(user => (
@@ -201,7 +202,7 @@ function AdminDashboard() {
                 placeholder="Tìm kiếm sản phẩm..."
                 value={searchProducts}
                 onChange={(e) => setSearchProducts(e.target.value)}
-                className="p-2 border rounded w-full"
+                className="mb-4 p-2 border rounded w-full"
               />
               {searchProducts && (
                 <button
@@ -212,6 +213,7 @@ function AdminDashboard() {
                 </button>
               )}
             </div>
+            <p className="mb-4 font-semibold text-2xl">Số lượng sản phẩm: {dataProducts.length}</p>
             {filteredProducts.length ? (
               <ul>
                 {paginate(filteredProducts, currentPageProducts).map(product => (
@@ -256,7 +258,8 @@ function AdminDashboard() {
                   &times;
                 </button>
               )}
-            </div>            
+            </div> 
+            <p className="mb-4 font-semibold text-2xl">Số lượng bài viết: {dataBlogs.length}</p>           
             {filteredBlogs.length ? (
               <ul>
                 {paginate(filteredBlogs, currentPageBlogs).map(blog => (
