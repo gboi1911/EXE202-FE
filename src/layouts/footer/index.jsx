@@ -3,12 +3,18 @@ import vector_2 from "../../assets/images/Vector_2.png";
 import vector_6 from "../../assets/images/Vector_6.png";
 import vector_4 from "../../assets/images/Vector_4.png";
 import vector_1 from "../../assets/images/Vector_1.png";
+import instagram from "../../assets/images/instagram.png";
+import facebook from "../../assets/images/facebook.png";
 import logo from "../../assets/images/logo.png";
 import '../footer/footer.css';
 
 const redirectToFacebook = () => {
   window.open('https://www.facebook.com/profile.php?id=61560856130286', '_blank');
 };
+
+const redirectToInsta = () => {
+  window.open('https://www.instagram.com/artspectrum.exe/?fbclid=IwZXh0bgNhZW0CMTAAAR0-wamxXFFn67-XTIyOayKADWHufwNhkKhMv0DIzWdax1Q7RvBWs9eqo8s_aem_-M34P9bKx_JOp0HqGzzCqQ', '_blank');
+}
 
 function Footer() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -94,9 +100,18 @@ function Footer() {
                   <div
                     className="w-[24px] h-[24px] shrink-0 bg-contain bg-no-repeat"
                     style={{
-                      backgroundImage: `url(${vector_6})`,
+                      backgroundImage: `url(${facebook})`,
                     }}
                     onClick={redirectToFacebook}
+                  />                
+                </div>
+                <div className="p-4 bg-gray-300 rounded-lg cursor-pointer">
+                  <div
+                    className="w-[24px] h-[24px] shrink-0 bg-contain bg-no-repeat"
+                    style={{
+                      backgroundImage: `url(${instagram})`,
+                    }}
+                    onClick={redirectToInsta}
                   />                
                 </div>
               </div>
