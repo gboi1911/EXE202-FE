@@ -23,6 +23,7 @@ function UpdateProfileModal() {
       email: values.email || isLogin.userCredentials?.email,
       fullName: values.fullName || isLogin.userCredentials?.fullName,
       address: values.address || isLogin.userCredentials?.address,
+      role: isLogin.userCredentials?.role,
       phoneNumber: values.phoneNumber || isLogin.userCredentials?.phoneNumber,
     });
     if (data.succeeded) {
@@ -37,6 +38,7 @@ function UpdateProfileModal() {
             email: values.email || isLogin.userCredentials?.email,
             fullName: values.fullName || isLogin.userCredentials?.fullName,
             address: values.address || isLogin.userCredentials?.address,
+            role: isLogin.userCredentials?.role,
             phoneNumber:
               values.phoneNumber || isLogin.userCredentials?.phoneNumber,
           },
@@ -58,13 +60,13 @@ function UpdateProfileModal() {
           },
         }),
       });
-      toast.success("Login successfully!", {
+      toast.success("Update successfully!", {
         position: "top-right",
         autoClose: 2000,
         theme: "light",
       });
     } else {
-      toast.error("email or password wrong!", {
+      toast.error("Update fail! Check again your information", {
         position: "top-right",
         autoClose: 2000,
         theme: "light",
