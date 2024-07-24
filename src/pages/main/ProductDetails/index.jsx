@@ -63,8 +63,11 @@ function ProductDetails() {
   }
 
   function formatPrice(price) {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-  };
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  }
 
   useEffect(() => {
     fetchGetProductById();
@@ -83,10 +86,10 @@ function ProductDetails() {
           </div>
         </div>
         <div className="w-[50%] flex flex-col justify-center">
-          <div className="text-[24px] font-bold mb-5">
-            {painting?.title} - {}
+          <div className="text-[24px] font-bold mb-5">{painting?.title}</div>
+          <div className="mb-5 w-[700px] text-justify">
+            {painting?.description}
           </div>
-          <div className="mb-5">{painting?.description}</div>
           <div className="text-[24px]">{formatPrice(painting?.price)}</div>
           <div className="flex gap-10">
             <div>

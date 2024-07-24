@@ -17,8 +17,11 @@ function Home() {
   }, []);
 
   function formatPrice(price) {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-  };
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  }
 
   const handleClick = (product) => {
     navigate(`/products/${product.paintingId}`);
@@ -69,7 +72,7 @@ function Home() {
                       />
                     </div>
                     <div className="mt-7 ml-5">
-                      <div className="text-[24px] font-semibold mb-2">
+                      <div className="text-[24px] font-semibold mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
                         {item.title}
                       </div>
                     </div>
@@ -123,7 +126,7 @@ function Home() {
                       />
                     </div>
                     <div className="mt-7 ml-5">
-                      <div className="text-[24px] font-semibold mb-2">
+                      <div className="text-[24px] font-semibold mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
                         {item.title}
                       </div>
                     </div>
@@ -177,7 +180,7 @@ function Home() {
                       />
                     </div>
                     <div className="mt-7 ml-5">
-                      <div className="text-[24px] font-semibold mb-2">
+                      <div className="text-[24px] font-semibold mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
                         {item.title}
                       </div>
                     </div>

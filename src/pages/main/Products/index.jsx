@@ -44,8 +44,11 @@ function Products() {
   }
 
   function formatPrice(price) {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-  };
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  }
 
   const handleClick = (product) => {
     navigate(`/products/${product.paintingId}`);
@@ -63,7 +66,7 @@ function Products() {
       case "2000000to5000000":
         return products.filter(
           (product) => product.price >= 2000000 && product.price <= 5000000
-        );  
+        );
       case "5000000to10000000":
         return products.filter(
           (product) => product.price >= 5000000 && product.price <= 10000000
@@ -219,7 +222,7 @@ function Products() {
                       />
                     </div>
                     <div className="mt-7 ml-5">
-                      <div className="text-[24px] font-semibold mb-2">
+                      <div className="text-[24px] font-semibold mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
                         {item.title}
                       </div>
                     </div>
