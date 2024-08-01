@@ -11,13 +11,13 @@ function CheckoutSuccess() {
   };
   return (
     <div className="flex flex-col gap-10 mt-10 items-center h-[500px]">
-      <h1>Checkout Success!</h1>
-      <h2>Thank you for your order!</h2>
+      <h1>Thanh toán thành công!</h1>
+      <h2>Cảm ơn bạn đã mua tranh ở Artspectrum!</h2>
       <button
-        className="w-[150px] h-[50px] rounded-2xl border-blue-gray-200 cursor-pointer hover:bg-blue-400"
+        className="w-[120px] h-[50px] rounded-2xl border-blue-gray-200 cursor-pointer hover:bg-blue-400"
         onClick={handleClick}
       >
-        Back to Shopping
+        Trở về
       </button>
     </div>
   );
